@@ -27,9 +27,7 @@ public:
     T* GetComponent()
     {
         assert(components[typeid(T).name()] != 0);
-        T* comp = new T;
-        comp = static_cast<T*>(components[typeid(T).name()]);
-        return comp;
+        return static_cast<T*>(components[typeid(T).name()]);
     };
 
     template <typename T>
@@ -41,6 +39,7 @@ public:
     template <typename T>
     void RemoveComponent()
     {
+        delete components[typeid(T).name()];
         components.erase(typeid(T).name());
     };
 };
@@ -59,8 +58,11 @@ int main()
 
     obj.RemoveComponent<Renderer>();
 
+    Collider* col = obj.GetComponent<Collider>();
+
+    std::cout << col->geometry;
     //std::cout << obj.GetComponent<Renderer>()->sprite;
-    std::cout << obj.GetComponent<Collider>()->geometry;
+    //std::cout << obj.GetComponent<Collider>()->geometry;
 
     //graphics(obj);
 }
