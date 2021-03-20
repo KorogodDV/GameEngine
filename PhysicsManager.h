@@ -20,11 +20,7 @@ public:
         PhysicsComps.remove(physics);
     };
 
-    //void update()
-    //{
-    //    for (Physics* currscript : PhysicsComps)
-    //        currscript->execute();
-    //};
+    void update() {};
 
     int length()
     {
