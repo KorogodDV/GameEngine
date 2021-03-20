@@ -5,9 +5,9 @@
 #include <cassert>
 #include <SFML/Graphics.hpp>
 #include "Components.h"
+#include "PhysicsManager.h"
+#include "ScriptManager.h"
 
-extern ScriptManagers ScriptManager;
-extern PhysicsManagers PhysicsManager;
 
 
 class GameObject

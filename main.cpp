@@ -3,8 +3,6 @@
 #include "PhysicsManager.h"
 #include "ScriptManager.h"
 
-extern ScriptManagers ScriptManager;
-extern PhysicsManagers PhysicsManager;
 const int window_length = 1280;
 const int window_width = 720;
 
