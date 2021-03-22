@@ -63,6 +63,8 @@ int main()
     }
     Collider* col = obj.GetComponent<Collider>();
 
+    std::cout << 111 << std::endl;
+
     std::cout << col->geometry;
     //std::cout << obj.GetComponent<Renderer>()->sprite;
     //std::cout << obj.GetComponent<Collider>()->geometry;
