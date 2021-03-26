@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "PhysicsManager.h"
 #include "ScriptManager.h"
+#include "Checkcollision.h"
 
 const int window_length = 1280;
 const int window_width = 720;
@@ -25,13 +26,12 @@ int main()
     obj.AddComponent<Physics>();
     obj.AddComponent<TestScript>();
 
-    sf::ConvexShape newHitbox;
+    /*sf::ConvexShape newHitbox;
     newHitbox.setFillColor(sf::Color::Red);
     newHitbox.setPointCount(3);
     newHitbox.setPoint(0, sf::Vector2f(100, 100));
     newHitbox.setPoint(1, sf::Vector2f(600, 100));
     newHitbox.setPoint(2, sf::Vector2f(600, 600));
-
 
     Physics* ph = obj.GetComponent<Physics>();
     ph->hitboxes.push_back(newHitbox);
@@ -43,15 +43,36 @@ int main()
 
     ph->hitboxes.push_back(newHitbox);
 
-    ph = obj.GetComponent<Physics>();
+    ph = obj.GetComponent<Physics>();*/
+
+    sf::ConvexShape newHitbox1;
+    newHitbox1.setFillColor(sf::Color::Red);
+    newHitbox1.setPointCount(3);
+    newHitbox1.setPoint(0, sf::Vector2f(100, 100));
+    newHitbox1.setPoint(1, sf::Vector2f(600, 100));
+    newHitbox1.setPoint(2, sf::Vector2f(100, 600));
+
+    sf::ConvexShape newHitbox2;
+    newHitbox2.setFillColor(sf::Color::Green);
+    newHitbox2.setPointCount(3);
+    newHitbox2.setPoint(0, sf::Vector2f(500, 300));
+    newHitbox2.setPoint(1, sf::Vector2f(800, 100));
+    newHitbox2.setPoint(2, sf::Vector2f(900, 200));
+
+   std::cout << checkCollision(newHitbox1, newHitbox2) << std::endl;
+    
 
     while (window.isOpen())
     {
         sf::Event event;
         window.clear();
-        for (sf::ConvexShape hitbox : ph->hitboxes)
-            window.draw(hitbox);
+        //for (sf::ConvexShape hitbox : ph->hitboxes)
+            //window.draw(hitbox);
+        
+        window.draw(newHitbox1);
+        window.draw(newHitbox2);
         window.display();
+
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
