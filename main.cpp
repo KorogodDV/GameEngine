@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "PhysicsManager.h"
 #include "ScriptManager.h"
-#include "Checkcollision.h"
+#include "Check—ollision.h"
 
 const int window_length = 1280;
 const int window_width = 720;
@@ -60,12 +60,23 @@ int main()
     newHitbox2.setPoint(2, sf::Vector2f(300, 300));
 
    std::cout << checkCollision(newHitbox1, newHitbox2) << std::endl;
+
+   sf::Image ballImage;
+   ballImage.loadFromFile("textures/ball.png");
+   ballImage.createMaskFromColor(sf::Color::White);
+
+   sf::Texture balltexture;
+   balltexture.loadFromImage(ballImage);
+   //sf::Sprite sphere(balltexture, sf::IntRect(0, 0, 174, 174));
+   sf::Sprite sphere(balltexture);
+   sphere.setPosition(500, 500);
     
 
     while (window.isOpen())
     {
         sf::Event event;
         window.clear();
+        window.draw(sphere);
         //for (sf::ConvexShape hitbox : ph->hitboxes)
             //window.draw(hitbox);
         
