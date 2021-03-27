@@ -48,17 +48,16 @@ int main()
     sf::ConvexShape newHitbox1;
     newHitbox1.setFillColor(sf::Color::Red);
     newHitbox1.setPointCount(3);
-    newHitbox1.setPoint(0, sf::Vector2f(1000, 100));
-    newHitbox1.setPoint(1, sf::Vector2f(600, 100));
-    newHitbox1.setPoint(2, sf::Vector2f(800, 600));
+    newHitbox1.setPoint(0, sf::Vector2f(100, 100));
+    newHitbox1.setPoint(1, sf::Vector2f(200, 100));
+    newHitbox1.setPoint(2, sf::Vector2f(200, 200));
 
     sf::ConvexShape newHitbox2;
     newHitbox2.setFillColor(sf::Color::Green);
-    newHitbox2.setPointCount(4);
+    newHitbox2.setPointCount(3);
     newHitbox2.setPoint(0, sf::Vector2f(200, 200));
-    newHitbox2.setPoint(1, sf::Vector2f(200, 600));
-    newHitbox2.setPoint(2, sf::Vector2f(600, 600));
-    newHitbox2.setPoint(3, sf::Vector2f(600, 200));
+    newHitbox2.setPoint(1, sf::Vector2f(200, 300));
+    newHitbox2.setPoint(2, sf::Vector2f(300, 300));
 
    std::cout << checkCollision(newHitbox1, newHitbox2) << std::endl;
     
@@ -83,11 +82,11 @@ int main()
             }
         }
     }
-    Collider* col = obj.GetComponent<Collider>();
+    //Collider* col = obj.GetComponent<Collider>();
 
     std::cout << 111 << std::endl;
 
-    std::cout << col->geometry;
+    //std::cout << col->geometry;
     //std::cout << obj.GetComponent<Renderer>()->sprite;
     //std::cout << obj.GetComponent<Collider>()->geometry;
 

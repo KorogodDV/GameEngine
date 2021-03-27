@@ -160,6 +160,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="ScriptManager.h" />
+    <ClInclude Include="test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
