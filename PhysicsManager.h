@@ -22,11 +22,6 @@ public:
 
     void update() {};
 
-    int length()
-    {
-        return PhysicsComps.size();
-    };
-
 };
 
 PhysicsManagers PhysicsManager;

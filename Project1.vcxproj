@@ -158,6 +158,7 @@
     <ClInclude Include="CheckСollision.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GraphicsManager.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="ScriptManager.h" />
   </ItemGroup>

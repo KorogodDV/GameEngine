@@ -25,11 +25,6 @@ public:
             currscript->execute();
     };
 
-    int length()
-    {
-        return scripts.size();
-    };
-
 };
 
 ScriptManagers ScriptManager;

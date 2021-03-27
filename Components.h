@@ -21,7 +21,7 @@ public:
 class Renderer : public Component {
 public:
 
-    int sprite;
+    sf::Sprite sprite;
 
 };
 

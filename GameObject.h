@@ -7,6 +7,7 @@
 #include "Components.h"
 #include "PhysicsManager.h"
 #include "ScriptManager.h"
+#include "GraphicsManager.h"
 
 
 
@@ -15,6 +16,8 @@ class GameObject
     std::map<std::string, Component*> components;
 
 public:
+
+    std::string name;
 
     template <typename T>
     T* GetComponent()
