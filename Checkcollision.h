@@ -25,7 +25,7 @@ public:
 		{
 			this->a = 1;
 			this->b = (B.x - A.x)/(A.y - B.y);
-			this->c = -A.x - b * A.y;
+			this->c = -A.x - this->b * A.y;
 		}
 	}
 
@@ -59,53 +59,39 @@ public:
 	}
 };
 
-sf::Vector2f coordinates_projection(sf::ConvexShape Hitbox, Line line)
+sf::Vector2f cord_Pr(sf::ConvexShape Hitbox, Line line)
 {
-	sf::Vector2f B = Hitbox.getPoint(0);
-	Line perpendicular = line.perpendicular(B);
-	sf::Vector2f O = line.crossing_with_perpendicular(perpendicular);
+	(line.crossing_with_perpendicular(line.perpendicular(Hitbox.getPoint(0)))).x;
 
-	float x_min = O.x;
-	float x_max = O.x;
+	float x_min = (line.crossing_with_perpendicular(line.perpendicular(Hitbox.getPoint(0)))).x;
+	float x_max = (line.crossing_with_perpendicular(line.perpendicular(Hitbox.getPoint(0)))).x;
 
 	for (int j = 1; j < Hitbox.getPointCount(); j++)
 	{
-		sf::Vector2f B = Hitbox.getPoint(j);
-		Line perpendicular = line.perpendicular(B);
-		sf::Vector2f O = line.crossing_with_perpendicular(perpendicular);
+		if ((line.crossing_with_perpendicular(line.perpendicular(Hitbox.getPoint(j)))).x < x_min)
+			x_min = (line.crossing_with_perpendicular(line.perpendicular(Hitbox.getPoint(j)))).x;
 
-		if (O.x < x_min)
-			x_min = O.x;
-
-		if (O.x > x_max)
-			x_max = O.x;
+		if ((line.crossing_with_perpendicular(line.perpendicular(Hitbox.getPoint(j)))).x > x_max)
+			x_max = (line.crossing_with_perpendicular(line.perpendicular(Hitbox.getPoint(j)))).x;
 	}
 	return sf::Vector2f(x_min, x_max);
 }
 
 bool checkCollision(sf::ConvexShape Hitbox1, sf::ConvexShape Hitbox2)
 {
-	bool result = true;
-	
 	for (int i = 0; i < Hitbox1.getPointCount(); i++)
 	{
-		sf::Vector2f A = Hitbox1.getPoint(i);
-		
-		Line side_Shape(A, Hitbox1.getPoint((i + 1) % Hitbox1.getPointCount()));
-		Line line = side_Shape.perpendicular(A);
+		sf::Vector2f cord_Pr_Hitbox1 = cord_Pr( Hitbox1, (Line(Hitbox1.getPoint(i), Hitbox1.getPoint((i + 1) % Hitbox1.getPointCount()))).perpendicular(Hitbox1.getPoint(i)));
+		float x_min_Hitbox1 = cord_Pr_Hitbox1.x;
+		float x_max_Hitbox1 = cord_Pr_Hitbox1.y;
 
-		sf::Vector2f coordinates_projection_Hitbox1 = coordinates_projection( Hitbox1, line);
-		float x_min_Hitbox1 = coordinates_projection_Hitbox1.x;
-		float x_max_Hitbox1 = coordinates_projection_Hitbox1.y;
-
-		sf::Vector2f coordinates_projection_Hitbox2 = coordinates_projection( Hitbox2, line);
-		float x_min_Hitbox2 = coordinates_projection_Hitbox2.x;
-		float x_max_Hitbox2 = coordinates_projection_Hitbox2.y;
+		sf::Vector2f cord_Pr_Hitbox2 = cord_Pr( Hitbox2, (Line(Hitbox1.getPoint(i), Hitbox1.getPoint((i + 1) % Hitbox1.getPointCount()))).perpendicular(Hitbox1.getPoint(i)));
+		float x_min_Hitbox2 = cord_Pr_Hitbox2.x;
+		float x_max_Hitbox2 = cord_Pr_Hitbox2.y;
 
 		if ((x_max_Hitbox1 < x_min_Hitbox2 ) or (x_max_Hitbox2 < x_min_Hitbox1))
-			result = false;
+			return false;
 	}
-
-	return result;
+	return true;
 }
 
