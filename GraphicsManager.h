@@ -16,7 +16,7 @@ public:
         Renderers.push_back(newrend);
     }
 
-    void RemovePhysics(Renderer* rend)
+    void RemoveRenderer(Renderer* rend)
     {
         Renderers.remove(rend);
     }

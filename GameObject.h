@@ -46,8 +46,16 @@ public:
             ScriptManager.RemoveScript(static_cast<Script*>(components[typeid(T).name()]));
         else if (typeid(T).name() == typeid(Physics).name())
             PhysicsManager.RemovePhysics(static_cast<Physics*>(components[typeid(T).name()]));
+        else if (typeid(T).name() == typeid(Renderer).name())
+            GraphicsManager.RemoveRenderer(static_cast<Renderer*>(components[typeid(T).name()]));
         else
             delete components[typeid(T).name()];
         components.erase(typeid(T).name());
     }
+
+    //void EraseComponents()
+    //{
+    //    while (components.size())
+    //        this->RemoveComponent<components.>()
+    //}
 };
