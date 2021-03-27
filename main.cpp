@@ -8,13 +8,6 @@
 const int window_length = 1280;
 const int window_width = 720;
 
-
-//void graphics(GameObject obj)
-//{
-//    Renderer* r = obj.GetComponent<Renderer>();
-//}
-
-
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(window_length, window_width), "test");
