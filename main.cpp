@@ -55,9 +55,9 @@ int main()
     sf::ConvexShape newHitbox2;
     newHitbox2.setFillColor(sf::Color::Green);
     newHitbox2.setPointCount(3);
-    newHitbox2.setPoint(0, sf::Vector2f(100, 100));
-    newHitbox2.setPoint(1, sf::Vector2f(100, 200));
-    newHitbox2.setPoint(2, sf::Vector2f(200, 200));
+    newHitbox2.setPoint(0, sf::Vector2f(200, 200));
+    newHitbox2.setPoint(1, sf::Vector2f(200, 300));
+    newHitbox2.setPoint(2, sf::Vector2f(300, 300));
 
    std::cout << checkCollision(newHitbox1, newHitbox2) << std::endl;
     

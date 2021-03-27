@@ -27,6 +27,7 @@ public:
     void AddComponent()
     {
         components[typeid(T).name()] = new T;
+        components[typeid(T).name()]->gameObject = this;
         if (std::is_base_of<Script, T>::value)
             ScriptManager.AddScript(static_cast<Script*>(components[typeid(T).name()]));
         if (typeid(T).name() == typeid(Physics).name())

@@ -3,9 +3,12 @@
 #include <list>
 #include <SFML/Graphics.hpp>
 
+class GameObject;
+
 
 class Component {
-
+public:
+    GameObject* gameObject;
 };
 
 class Collider : public Component {
