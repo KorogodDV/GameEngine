@@ -24,7 +24,7 @@ public:
     {
         assert(components[typeid(T).name()] != 0);
         return static_cast<T*>(components[typeid(T).name()]);
-    };
+    }
 
     template <typename T>
     void AddComponent()
@@ -37,7 +37,7 @@ public:
             PhysicsManager.AddPhysics(static_cast<Physics*>(components[typeid(T).name()]));
         if (typeid(T).name() == typeid(Renderer).name())
             GraphicsManager.AddRenderer(static_cast<Renderer*>(components[typeid(T).name()]));
-    };
+    }
 
     template <typename T>
     void RemoveComponent()
@@ -49,5 +49,5 @@ public:
         else
             delete components[typeid(T).name()];
         components.erase(typeid(T).name());
-    };
+    }
 };

@@ -48,6 +48,6 @@ public:
     void execute()
     {
         std::cout << val << "   ";
-    };
+    }
 };
 

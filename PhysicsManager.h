@@ -13,12 +13,12 @@ public:
     void AddPhysics(Physics* newphysics)
     {
         PhysicsComps.push_back(newphysics);
-    };
+    }
 
     void RemovePhysics(Physics* physics)
     {
         PhysicsComps.remove(physics);
-    };
+    }
 
     void update() {};
 
