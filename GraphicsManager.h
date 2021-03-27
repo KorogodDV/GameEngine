@@ -21,8 +21,11 @@ public:
         Renderers.remove(rend);
     };
 
-    void draw() {};
+    void draw(sf::RenderWindow* window) {
+        for (Renderer* currrend : Renderers)
+            window->draw(currrend->sprite);
+    };
 
 };
 
-GraphicsManagers GraphisManager;
+GraphicsManagers GraphicsManager;

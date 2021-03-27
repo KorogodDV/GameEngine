@@ -26,6 +26,8 @@ int main()
     obj.AddComponent<Physics>();
     obj.AddComponent<TestScript>();
 
+    GameObject obj2;
+    obj2.AddComponent<Renderer>();
 
    sf::Image ballImage;
    ballImage.loadFromFile("textures/ball.png");
@@ -35,13 +37,19 @@ int main()
    balltexture.loadFromImage(ballImage);
    sf::Sprite sphere(balltexture);
    sphere.setPosition(500, 500);
+
+   obj.GetComponent<Renderer>()->sprite = sphere;
+
+   sphere.setPosition(200, 200);
+
+   obj2.GetComponent<Renderer>()->sprite = sphere;
     
 
     while (window.isOpen())
     {
         sf::Event event;
         window.clear();
-        window.draw(sphere);
+        GraphicsManager.draw(&window);
         window.display();
 
         while (window.pollEvent(event))

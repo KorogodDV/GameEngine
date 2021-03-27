@@ -35,6 +35,8 @@ public:
             ScriptManager.AddScript(static_cast<Script*>(components[typeid(T).name()]));
         if (typeid(T).name() == typeid(Physics).name())
             PhysicsManager.AddPhysics(static_cast<Physics*>(components[typeid(T).name()]));
+        if (typeid(T).name() == typeid(Renderer).name())
+            GraphicsManager.AddRenderer(static_cast<Renderer*>(components[typeid(T).name()]));
     };
 
     template <typename T>
