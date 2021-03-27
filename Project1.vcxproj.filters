@@ -32,10 +32,7 @@
     <ClInclude Include="ScriptManager.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Checkcollision.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="test.h">
+    <ClInclude Include="CheckCollision.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
