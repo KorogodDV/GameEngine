@@ -61,8 +61,6 @@ public:
 
 sf::Vector2f cord_Pr(sf::ConvexShape Hitbox, Line line)
 {
-	(line.crossing_with_perpendicular(line.perpendicular(Hitbox.getPoint(0)))).x;
-
 	float x_min = (line.crossing_with_perpendicular(line.perpendicular(Hitbox.getPoint(0)))).x;
 	float x_max = (line.crossing_with_perpendicular(line.perpendicular(Hitbox.getPoint(0)))).x;
 
