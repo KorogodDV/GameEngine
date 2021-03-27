@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "PhysicsManager.h"
 #include "ScriptManager.h"
-#include "Checkcollision.h"
+#include "Check—ollision.h"
 
 const int window_length = 1280;
 const int window_width = 720;
