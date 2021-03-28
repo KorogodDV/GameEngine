@@ -13,38 +13,31 @@ public:
 
 	void CreateObject(std::string name)
 	{
-		GameObjects.push_back(*new GameObject);
+		GameObjects.push_back(*(new GameObject));
 		GameObjects.back().name = name;
 	}
 
 	GameObject* GetObject(std::string name)
 	{
-		GameObject* obj = 0;
-		for (GameObject gameobj : GameObjects)
-		{
-			if (gameobj.name == name)
-			{
-				obj = &gameobj;
-				break;
-			}
-		}
-		assert(obj);
-		return obj;
+		auto searchRes = std::find_if(GameObjects.begin(), GameObjects.end(), [name](GameObject gameobj) { return  gameobj.name == name; });
+		if (searchRes != GameObjects.end())
+			return &(*searchRes);
+		assert(0);
 	}
 
 
-	//void DeleteObject(std::string name)
-	//{
-	//	GameObject* obj = 0;
-	//	for (GameObject gameobj : GameObjects)
-	//	{
-	//		if (gameobj.name == name)
-	//		{
-	//			obj = &gameobj;
-	//			break;
-	//		}
-	//	}
-	//	assert(obj);
-	//	for (Component* comp : obj.)
-	//}
+	void DeleteObject(std::string name)
+	{
+		GameObject* obj = 0;
+		auto searchRes = std::find_if(GameObjects.begin(), GameObjects.end(), [name](GameObject gameobj) { return  gameobj.name == name; });
+		if (searchRes != GameObjects.end())
+			obj = &(*searchRes);
+		assert(obj);
+		GraphicsManager.RemoveRenderer(obj);
+		PhysicsManager.RemovePhysics(obj);
+		ScriptManager.RemoveScript(obj);
+		GameObjects.remove(*obj);
+	}
 };
+
+Storage storage;
