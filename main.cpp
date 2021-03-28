@@ -4,6 +4,7 @@
 #include "ScriptManager.h"
 #include "GraphicsManager.h"
 #include "Check—ollision.h"
+#include "Storage.h"
 
 const int window_length = 1280;
 const int window_width = 720;
@@ -12,18 +13,20 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(window_length, window_width), "test");
 
-    GameObject obj;
+    storage.CreateObject("obj1");
+    storage.CreateObject("obj2");
 
-    obj.AddComponent<Renderer>();
-    obj.AddComponent<Collider>();
-    obj.AddComponent<Physics>();
-    obj.AddComponent<TestScript>();
-    obj.AddComponent<Script>();
+    GameObject* obj1 = storage.GetObject("obj1");
 
-    GameObject obj2;
-    obj2.AddComponent<Renderer>();
-    obj2.AddComponent<TestScript>();
+    obj1->AddComponent<Collider>();
+    obj1->AddComponent<Renderer>();
+    obj1->AddComponent<Physics>();
+    obj1->AddComponent<TestScript>();
+    obj1->AddComponent<Script>();
 
+    GameObject* obj2 = storage.GetObject("obj2");
+    obj2->AddComponent<Renderer>();
+    obj2->AddComponent<TestScript>();
 
    sf::Image ballImage;
    ballImage.loadFromFile("textures/ball.png");
@@ -34,12 +37,11 @@ int main()
    sf::Sprite sphere(balltexture);
    sphere.setPosition(500, 500);
 
-   obj.GetComponent<Renderer>()->sprite = sphere;
+   obj1->GetComponent<Renderer>()->sprite = sphere;
 
    sphere.setPosition(200, 200);
 
-   obj2.GetComponent<Renderer>()->sprite = sphere;
-    
+   obj2->GetComponent<Renderer>()->sprite = sphere;
 
     while (window.isOpen())
     {
