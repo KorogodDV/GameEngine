@@ -52,10 +52,4 @@ public:
             delete components[typeid(T).name()];
         components.erase(typeid(T).name());
     }
-
-    //void EraseComponents()
-    //{
-    //    while (components.size())
-    //        this->RemoveComponent<components.>()
-    //}
 };
