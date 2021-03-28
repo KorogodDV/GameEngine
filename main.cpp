@@ -12,16 +12,18 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(window_length, window_width), "test");
 
-
     GameObject obj;
 
     obj.AddComponent<Renderer>();
     obj.AddComponent<Collider>();
     obj.AddComponent<Physics>();
     obj.AddComponent<TestScript>();
+    obj.AddComponent<Script>();
 
     GameObject obj2;
     obj2.AddComponent<Renderer>();
+    obj2.AddComponent<TestScript>();
+
 
    sf::Image ballImage;
    ballImage.loadFromFile("textures/ball.png");
