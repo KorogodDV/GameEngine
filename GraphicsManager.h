@@ -21,9 +21,19 @@ public:
         Renderers.remove(rend);
     }
 
+    void RemoveRenderer(GameObject* obj)
+    {
+        Renderers.remove_if([obj](Renderer* rend) { return  rend->gameObject == obj; });
+    }
+
     void draw(sf::RenderWindow* window) {
         for (Renderer* currrend : Renderers)
             window->draw(currrend->sprite);
+    }
+
+    int size()
+    {
+        return Renderers.size();
     }
 
 };

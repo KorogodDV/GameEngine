@@ -2,6 +2,8 @@
 #include <list>
 #include "Components.h"
 
+class GameObject;
+
 class ScriptManagers {
 private:
 
@@ -19,12 +21,21 @@ public:
         scripts.remove(script);
     }
 
+    void RemoveScript(GameObject* obj)
+    {
+        scripts.remove_if([obj](Script* script) { return  script->gameObject == obj; });
+    }
+
     void update()
     {
         for (Script* currscript : scripts)
             currscript->execute();
     }
 
+    int size()
+    {
+        return scripts.size();
+    }
 };
 
 ScriptManagers ScriptManager;

@@ -29,8 +29,9 @@ public:
     template <typename T>
     void AddComponent()
     {
-        components[typeid(T).name()] = new T;
-        components[typeid(T).name()]->gameObject = this;
+        T* newcomp = new T;
+        newcomp->gameObject = this;
+        components[typeid(T).name()] = newcomp;
         if (std::is_base_of<Script, T>::value)
             ScriptManager.AddScript(static_cast<Script*>(components[typeid(T).name()]));
         if (typeid(T).name() == typeid(Physics).name())
@@ -53,9 +54,8 @@ public:
         components.erase(typeid(T).name());
     }
 
-    //void EraseComponents()
-    //{
-    //    while (components.size())
-    //        this->RemoveComponent<components.>()
-    //}
 };
+    bool operator==(GameObject obj1, GameObject obj2)
+    {
+        return obj1.name == obj2.name;
+    }

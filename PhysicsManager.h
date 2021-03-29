@@ -20,7 +20,17 @@ public:
         PhysicsComps.remove(physics);
     }
 
+    void RemovePhysics(GameObject* obj)
+    {
+        PhysicsComps.remove_if([obj](Physics* physics) { return  physics->gameObject == obj; });
+    }
+
     void update() {};
+
+    int size()
+    {
+        return PhysicsComps.size();
+    }
 
 };
 
