@@ -14,7 +14,7 @@ public:
 class Collider : public Component {
 public:
 
-    int geometry;
+    std::list<sf::ConvexShape> hitboxes;
 
 };
 
@@ -29,13 +29,20 @@ class Script : public Component {
 public:
 
     virtual void execute() {};
+    virtual void onCollide() {};
 
 };
 
 class Physics : public Component {
 public:
 
-    std::list<sf::ConvexShape> hitboxes;
+    sf::Vector2f speed = sf::Vector2f(0, 0);
+    sf::Vector2f acceleration = sf::Vector2f(0, 0);
+
+    float mass;
+
+    bool gravity = 0;
+    int collisionType = 0;
 
 };
 
