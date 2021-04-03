@@ -5,18 +5,16 @@
 #include "GraphicsManager.h"
 #include "CheckÑollision.h"
 #include "Storage.h"
-
-const int window_length = 1280;
-const int window_width = 720;
+#include "Application.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(window_length, window_width), "test");
+    Applications App;
 
-    storage.CreateObject("obj1");
-    storage.CreateObject("obj2");
+    App.Storage.CreateObject("obj1");
+    App.Storage.CreateObject("obj2");
 
-    GameObject* obj1 = storage.GetObject("obj1");
+    GameObject* obj1 = App.Storage.GetObject("obj1");
 
     obj1->AddComponent<Collider>();
     obj1->AddComponent<Renderer>();
@@ -24,7 +22,7 @@ int main()
     obj1->AddComponent<TestScript>();
     obj1->AddComponent<Script>();
 
-    GameObject* obj2 = storage.GetObject("obj2");
+    GameObject* obj2 = App.Storage.GetObject("obj2");
     obj2->AddComponent<Renderer>();
     obj2->AddComponent<TestScript>();
 
@@ -38,26 +36,21 @@ int main()
    sphere.setPosition(500, 500);
 
    obj1->GetComponent<Renderer>()->sprite = sphere;
+   obj1->GetComponent<Renderer>()->showHitboxesBoundary = 1;
 
    sphere.setPosition(200, 200);
 
    obj2->GetComponent<Renderer>()->sprite = sphere;
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        window.clear();
-        GraphicsManager.draw(&window);
-        window.display();
+   sf::ConvexShape hitbox(4);
+   hitbox.setFillColor(sf::Color(0));
+   hitbox.setOutlineColor(sf::Color::Blue);
+   hitbox.setPoint(0, sf::Vector2f(400, 400));
+   hitbox.setPoint(1, sf::Vector2f(600, 400));
+   hitbox.setPoint(2, sf::Vector2f(600, 600));
+   hitbox.setPoint(3, sf::Vector2f(400, 600));
+   obj1->GetComponent<Collider>()->hitboxes.push_back(hitbox);
 
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-            {
-                window.close();
-                break;
-            }
-        }
-    }
-    return 0;
+   App.Run();
+   return 0;
 }

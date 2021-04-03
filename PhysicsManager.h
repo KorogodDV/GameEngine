@@ -3,6 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include "Components.h"
 
+class GameObject;
+
 class PhysicsManagers {
 private:
 
@@ -33,5 +35,3 @@ public:
     }
 
 };
-
-PhysicsManagers PhysicsManager;

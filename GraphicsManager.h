@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Components.h"
 
+class GameObject;
 
 class GraphicsManagers {
 private:
@@ -11,31 +12,13 @@ private:
 
 public:
 
-    void AddRenderer(Renderer* newrend)
-    {
-        Renderers.push_back(newrend);
-    }
+    void AddRenderer(Renderer* newrend);
 
-    void RemoveRenderer(Renderer* rend)
-    {
-        Renderers.remove(rend);
-    }
+    void RemoveRenderer(Renderer* rend);
 
-    void RemoveRenderer(GameObject* obj)
-    {
-        Renderers.remove_if([obj](Renderer* rend) { return  rend->gameObject == obj; });
-    }
+    void RemoveRenderer(GameObject* obj);
 
-    void draw(sf::RenderWindow* window) {
-        for (Renderer* currrend : Renderers)
-            window->draw(currrend->sprite);
-    }
+    void draw(sf::RenderWindow* window);
 
-    int size()
-    {
-        return Renderers.size();
-    }
-
+    int size();
 };
-
-GraphicsManagers GraphicsManager;

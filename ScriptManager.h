@@ -37,5 +37,3 @@ public:
         return scripts.size();
     }
 };
-
-ScriptManagers ScriptManager;

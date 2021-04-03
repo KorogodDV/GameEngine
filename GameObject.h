@@ -8,8 +8,7 @@
 #include "PhysicsManager.h"
 #include "ScriptManager.h"
 #include "GraphicsManager.h"
-
-
+#include "Application.h"
 
 class GameObject
 {
@@ -17,6 +16,7 @@ class GameObject
 
 public:
 
+    Applications* application;
     std::string name;
 
     template <typename T>
@@ -33,29 +33,29 @@ public:
         newcomp->gameObject = this;
         components[typeid(T).name()] = newcomp;
         if (std::is_base_of<Script, T>::value)
-            ScriptManager.AddScript(static_cast<Script*>(components[typeid(T).name()]));
+            application->ScriptManager.AddScript(static_cast<Script*>(components[typeid(T).name()]));
         if (typeid(T).name() == typeid(Physics).name())
-            PhysicsManager.AddPhysics(static_cast<Physics*>(components[typeid(T).name()]));
+            application->PhysicsManager.AddPhysics(static_cast<Physics*>(components[typeid(T).name()]));
         if (typeid(T).name() == typeid(Renderer).name())
-            GraphicsManager.AddRenderer(static_cast<Renderer*>(components[typeid(T).name()]));
+            application->GraphicsManager.AddRenderer(static_cast<Renderer*>(components[typeid(T).name()]));
     }
 
     template <typename T>
     void RemoveComponent()
     {
         if (std::is_base_of<Script, T>::value)
-            ScriptManager.RemoveScript(static_cast<Script*>(components[typeid(T).name()]));
+            application->ScriptManager.RemoveScript(static_cast<Script*>(components[typeid(T).name()]));
         else if (typeid(T).name() == typeid(Physics).name())
-            PhysicsManager.RemovePhysics(static_cast<Physics*>(components[typeid(T).name()]));
+            application->PhysicsManager.RemovePhysics(static_cast<Physics*>(components[typeid(T).name()]));
         else if (typeid(T).name() == typeid(Renderer).name())
-            GraphicsManager.RemoveRenderer(static_cast<Renderer*>(components[typeid(T).name()]));
+            application->GraphicsManager.RemoveRenderer(static_cast<Renderer*>(components[typeid(T).name()]));
         else
             delete components[typeid(T).name()];
         components.erase(typeid(T).name());
     }
-
 };
-    bool operator==(GameObject obj1, GameObject obj2)
-    {
-        return obj1.name == obj2.name;
-    }
+
+bool operator==(GameObject obj1, GameObject obj2)
+{
+    return obj1.name == obj2.name;
+}

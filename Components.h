@@ -22,6 +22,7 @@ class Renderer : public Component {
 public:
 
     sf::Sprite sprite;
+    bool showHitboxesBoundary = 0;
 
 };
 
@@ -39,7 +40,7 @@ public:
     sf::Vector2f speed = sf::Vector2f(0, 0);
     sf::Vector2f acceleration = sf::Vector2f(0, 0);
 
-    float mass;
+    float mass = 0;
 
     bool gravity = 0;
     int collisionType = 0;
