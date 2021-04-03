@@ -11,10 +11,10 @@ int main()
 {
     Applications App;
 
-    App.Storage.CreateObject("obj1");
-    App.Storage.CreateObject("obj2");
+    App.Storage->CreateObject("obj1");
+    App.Storage->CreateObject("obj2");
 
-    GameObject* obj1 = App.Storage.GetObject("obj1");
+    GameObject* obj1 = App.Storage->GetObject("obj1");
 
     obj1->AddComponent<Collider>();
     obj1->AddComponent<Renderer>();
@@ -22,7 +22,7 @@ int main()
     obj1->AddComponent<TestScript>();
     obj1->AddComponent<Script>();
 
-    GameObject* obj2 = App.Storage.GetObject("obj2");
+    GameObject* obj2 = App.Storage->GetObject("obj2");
     obj2->AddComponent<Renderer>();
     obj2->AddComponent<TestScript>();
 

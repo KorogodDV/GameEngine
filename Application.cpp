@@ -9,11 +9,11 @@
 
 Applications::Applications()
     {
-        Storage = *new Storages;
-        Storage.application = this;
-        ScriptManager = *new ScriptManagers;
-        PhysicsManager = *new PhysicsManagers;
-        GraphicsManager = *new GraphicsManagers;
+        Storage = new Storages;
+        Storage->application = this;
+        ScriptManager = new ScriptManagers;
+        PhysicsManager = new PhysicsManagers;
+        GraphicsManager = new GraphicsManagers;
         window_length = 1280;
         window_width = 720;
         window = new sf::RenderWindow(sf::VideoMode(window_length, window_width), "App");
@@ -35,9 +35,9 @@ void Applications::Run()
             }
 
             window->clear();
-            GraphicsManager.draw(window);
-            PhysicsManager.update();
-            ScriptManager.update();
+            GraphicsManager->draw(window);
+            PhysicsManager->update();
+            ScriptManager->update();
             window->display();
         }
     }

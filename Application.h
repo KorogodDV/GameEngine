@@ -6,13 +6,12 @@
 #include "GameObject.h"
 #include <SFML/Graphics.hpp>
 
-class Applications
-{
+class Applications{
 public:
-	Storages Storage;
-	ScriptManagers ScriptManager;
-	PhysicsManagers PhysicsManager;
-	GraphicsManagers GraphicsManager;
+	Storages* Storage;
+	ScriptManagers* ScriptManager;
+	PhysicsManagers* PhysicsManager;
+	GraphicsManagers* GraphicsManager;
 	sf::RenderWindow* window;
     int window_length;
     int window_width;
