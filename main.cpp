@@ -19,7 +19,7 @@ int main()
     obj1->AddComponent<Collider>();
     obj1->AddComponent<Renderer>();
     obj1->AddComponent<Physics>();
-    obj1->AddComponent<TestScript>();
+    //obj1->AddComponent<TestScript>();
     obj1->AddComponent<Script>();
 
     GameObject* obj2 = App.Storage->GetObject("obj2");

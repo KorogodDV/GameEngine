@@ -55,7 +55,7 @@ public:
     }
 };
 
-bool operator==(GameObject obj1, GameObject obj2)
+inline bool operator==(GameObject obj1, GameObject obj2)
 {
     return obj1.name == obj2.name;
 }

@@ -2,11 +2,12 @@
 #include "GraphicsManager.h"
 #include "PhysicsManager.h"
 #include "ScriptManager.h"
-#include "Storage.h"
 #include "GameObject.h"
 #include <SFML/Graphics.hpp>
 
-class Applications{
+class Storages;
+
+class Applications {
 public:
 	Storages* Storage;
 	ScriptManagers* ScriptManager;
