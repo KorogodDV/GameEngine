@@ -12,26 +12,14 @@ private:
 
 public:
 
-    void AddPhysics(Physics* newphysics)
-    {
-        PhysicsComps.push_back(newphysics);
-    }
+    void AddPhysics(Physics* newphysics);
 
-    void RemovePhysics(Physics* physics)
-    {
-        PhysicsComps.remove(physics);
-    }
+    void RemovePhysics(Physics* physics);
 
-    void RemovePhysics(GameObject* obj)
-    {
-        PhysicsComps.remove_if([obj](Physics* physics) { return  physics->gameObject == obj; });
-    }
+    void RemovePhysics(GameObject* obj);
 
-    void update() {};
+    void update();
 
-    int size()
-    {
-        return PhysicsComps.size();
-    }
+    int size();
 
 };

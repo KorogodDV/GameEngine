@@ -11,29 +11,13 @@ private:
 
 public:
 
-    void AddScript(Script* newscript)
-    {
-        scripts.push_back(newscript);
-    }
+    void AddScript(Script* newscript);
 
-    void RemoveScript(Script* script)
-    {
-        scripts.remove(script);
-    }
+    void RemoveScript(Script* script);
 
-    void RemoveScript(GameObject* obj)
-    {
-        scripts.remove_if([obj](Script* script) { return  script->gameObject == obj; });
-    }
+    void RemoveScript(GameObject* obj);
 
-    void update()
-    {
-        for (Script* currscript : scripts)
-            currscript->execute();
-    }
+    void update();
 
-    int size()
-    {
-        return scripts.size();
-    }
+    int size();
 };
