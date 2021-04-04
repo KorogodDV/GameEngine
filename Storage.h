@@ -2,10 +2,6 @@
 #include <list>
 #include <string>
 #include "GameObject.h"
-#include "ScriptManager.h"
-#include "GraphicsManager.h"
-#include "PhysicsManager.h"
-#include <cassert>
 
 class Applications;
 
@@ -13,9 +9,11 @@ class Storages {
 private:
 
 	std::list<GameObject> GameObjects;
+	Applications* application;
 
 public:
-	Applications* application;
+	
+	Storages(Applications* app);
 
 	void CreateObject(std::string name);
 

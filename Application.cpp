@@ -9,8 +9,7 @@
 
 Applications::Applications()
     {
-        Storage = new Storages;
-        Storage->application = this;
+        Storage = new Storages(this);
         ScriptManager = new ScriptManagers;
         PhysicsManager = new PhysicsManagers;
         GraphicsManager = new GraphicsManagers;

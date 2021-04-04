@@ -2,6 +2,7 @@
 #include "GraphicsManager.h"
 #include "GameObject.h"
 #include "Components.h"
+#include <SFML/Graphics.hpp>
 
    
     void GraphicsManagers::AddRenderer(Renderer* newrend)

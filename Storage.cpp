@@ -9,11 +9,15 @@
 #include "Application.h"
 #include "Storage.h"
 
+Storages::Storages(Applications* app)
+{
+	GameObjects = *(new std::list<GameObject>);
+	application = app;
+}
+
 void Storages::CreateObject(std::string name)
 	{
-		GameObjects.push_back(*(new GameObject));
-		GameObjects.back().name = name;
-		GameObjects.back().application = application;
+		GameObjects.push_back(*(new GameObject(name, application)));
 	}
 
 GameObject* Storages::GetObject(std::string name)

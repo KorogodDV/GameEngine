@@ -13,18 +13,19 @@
 class GameObject
 {
     std::map<std::string, Component*> components;
+    Applications* application;
 
 public:
 
-    Applications* application;
     std::string name;
+    
+    GameObject(std::string name, Applications* app);
 
     template <typename T>
     T* GetComponent()
     {
-        T* comp = 0;
-        comp = static_cast<T*>(components[typeid(T).name()]);
-        return comp;
+        assert(components[typeid(T).name()]);
+        return static_cast<T*>(components[typeid(T).name()]);
     }
 
     template <typename T>
