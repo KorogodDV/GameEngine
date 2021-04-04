@@ -34,7 +34,7 @@ void Applications::Run()
                 }
             }
 
-            window->clear();
+            window->clear(sf::Color::White);
             GraphicsManager->draw(window);
             PhysicsManager->update();
             ScriptManager->update();

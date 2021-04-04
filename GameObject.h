@@ -22,8 +22,9 @@ public:
     template <typename T>
     T* GetComponent()
     {
-        assert(components[typeid(T).name()] != 0);
-        return static_cast<T*>(components[typeid(T).name()]);
+        T* comp = 0;
+        comp = static_cast<T*>(components[typeid(T).name()]);
+        return comp;
     }
 
     template <typename T>

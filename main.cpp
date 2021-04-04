@@ -24,7 +24,7 @@ int main()
 
     GameObject* obj2 = App.Storage->GetObject("obj2");
     obj2->AddComponent<Renderer>();
-    obj2->AddComponent<TestScript>();
+    //obj2->AddComponent<TestScript>();
 
    sf::Image ballImage;
    ballImage.loadFromFile("textures/ball.png");
@@ -45,6 +45,7 @@ int main()
    sf::ConvexShape hitbox(4);
    hitbox.setFillColor(sf::Color(0));
    hitbox.setOutlineColor(sf::Color::Blue);
+   hitbox.setOutlineThickness(1);
    hitbox.setPoint(0, sf::Vector2f(400, 400));
    hitbox.setPoint(1, sf::Vector2f(600, 400));
    hitbox.setPoint(2, sf::Vector2f(600, 600));
