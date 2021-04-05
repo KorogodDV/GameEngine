@@ -2,42 +2,26 @@
 #include <list>
 #include <string>
 #include "GameObject.h"
-#include <cassert>
 
-class Storage {
+class Applications;
+
+class Storages {
 private:
 
 	std::list<GameObject> GameObjects;
+	Applications* application;
 
 public:
+	
+	Storages(Applications* app);
 
-	void CreateObject(std::string name)
-	{
-		GameObjects.push_back(*(new GameObject));
-		GameObjects.back().name = name;
-	}
+	void CreateObject(std::string name);
 
-	GameObject* GetObject(std::string name)
-	{
-		auto searchRes = std::find_if(GameObjects.begin(), GameObjects.end(), [name](GameObject gameobj) { return  gameobj.name == name; });
-		if (searchRes != GameObjects.end())
-			return &(*searchRes);
-		assert(0);
-	}
+	void CreateBasicObject(std::string param);
 
+	void UploadScene(std::string address);
 
-	void DeleteObject(std::string name)
-	{
-		GameObject* obj = 0;
-		auto searchRes = std::find_if(GameObjects.begin(), GameObjects.end(), [name](GameObject gameobj) { return  gameobj.name == name; });
-		if (searchRes != GameObjects.end())
-			obj = &(*searchRes);
-		assert(obj);
-		GraphicsManager.RemoveRenderer(obj);
-		PhysicsManager.RemovePhysics(obj);
-		ScriptManager.RemoveScript(obj);
-		GameObjects.remove(*obj);
-	}
+	GameObject* GetObject(std::string name);
+
+	void DeleteObject(std::string name);
 };
-
-Storage storage;
