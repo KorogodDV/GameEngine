@@ -19,6 +19,8 @@ public:
 
 	void CreateBasicObject(std::string param);
 
+	void UploadScene(std::string address);
+
 	GameObject* GetObject(std::string name);
 
 	void DeleteObject(std::string name);

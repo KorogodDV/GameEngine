@@ -59,7 +59,7 @@ void Storages::CreateBasicObject(std::string objparams)
 
 		obj->AddComponent<Renderer>();
 		Renderer* rend = obj->GetComponent<Renderer>();
-		rend->showHitboxesBoundary = 1;
+		//rend->showHitboxesBoundary = 1;
 		rend->image.loadFromFile("textures/"/*ball.png*/ + param[2]);
 		rend->image.createMaskFromColor(sf::Color::White);
 		rend->texture.loadFromImage(rend->image);
@@ -70,6 +70,21 @@ void Storages::CreateBasicObject(std::string objparams)
 
 	GameObjects.push_back(*obj);
 }
+
+void Storages::UploadScene(std::string address)
+{
+	for (GameObject obj : GameObjects)
+		this->DeleteObject(obj.name);
+
+	std::string scene = uploadBufferFromFile(("scenes/" + address).c_str());
+	std::vector<std::string> objects;
+	split(scene, objects, '\n');
+	while (objects[0][0] == '/')
+		objects.erase(objects.begin());
+	for (std::string newobj : objects)
+		this->CreateBasicObject(newobj);
+}
+
 
 GameObject* Storages::GetObject(std::string name)
 {
