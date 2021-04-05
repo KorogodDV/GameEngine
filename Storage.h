@@ -17,6 +17,8 @@ public:
 
 	void CreateObject(std::string name);
 
+	void CreateBasicObject(std::string param);
+
 	GameObject* GetObject(std::string name);
 
 	void DeleteObject(std::string name);

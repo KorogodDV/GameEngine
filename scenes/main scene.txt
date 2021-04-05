@@ -1,0 +1,2 @@
+/name typename(ball) sprite_address centre_pos_x centre_pos_y speed_x speed_y radius mass gravity collison_type n
+ball1 ball textures/ball.png 200 200 0 0 20 1 0 0 10

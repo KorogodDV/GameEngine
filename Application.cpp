@@ -33,7 +33,7 @@ void Applications::Run()
                 }
             }
 
-            window->clear(sf::Color::White);
+            window->clear();
             GraphicsManager->draw(window);
             PhysicsManager->update();
             ScriptManager->update();

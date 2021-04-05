@@ -21,6 +21,8 @@ public:
 class Renderer : public Component {
 public:
 
+    sf::Image image;
+    sf::Texture texture;
     sf::Sprite sprite;
     bool showHitboxesBoundary = 0;
 

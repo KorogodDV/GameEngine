@@ -6,6 +6,7 @@
 #include "CheckÑollision.h"
 #include "Storage.h"
 #include "Application.h"
+#include "uploadingStringFromTxt.h"
 
 int main()
 {
@@ -27,18 +28,19 @@ int main()
     //obj2->AddComponent<TestScript>();
 
    sf::Image ballImage;
-   ballImage.loadFromFile("textures/ball.png");
+   ballImage.loadFromFile("textures/ball2.png");
    ballImage.createMaskFromColor(sf::Color::White);
 
    sf::Texture balltexture;
    balltexture.loadFromImage(ballImage);
    sf::Sprite sphere(balltexture);
-   sphere.setPosition(500, 500);
+   sphere.setPosition(434, 434);
 
    obj1->GetComponent<Renderer>()->sprite = sphere;
    obj1->GetComponent<Renderer>()->showHitboxesBoundary = 1;
 
-   sphere.setPosition(200, 200);
+   sphere.setPosition(1200, 200);
+   sphere.setColor(sf::Color::White);
 
    obj2->GetComponent<Renderer>()->sprite = sphere;
 
@@ -51,7 +53,20 @@ int main()
    hitbox.setPoint(2, sf::Vector2f(600, 600));
    hitbox.setPoint(3, sf::Vector2f(400, 600));
    obj1->GetComponent<Collider>()->hitboxes.push_back(hitbox);
+
+   App.Storage->CreateBasicObject("ball1 ball ball2.png 200 200 0 0 10 1 0 0 5");
+
+   //std::string buffer = uploadBufferFromFile("scenes/main scene.txt");
+   //std::vector<std::string> objects;
+   //split(buffer, objects, '\n');
+   //while (objects[0][0] == '/')
+   //    objects.erase(objects.begin());
+   //for (std::string str : objects)
+   // std::cout << "   \n NEWLINE  " << str;
+
    App.Run();
+
+
    return 0;
 }
 

@@ -169,6 +169,7 @@
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="ScriptManager.h" />
     <ClInclude Include="Storage.h" />
+    <ClInclude Include="uploadingStringFromTxt.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
