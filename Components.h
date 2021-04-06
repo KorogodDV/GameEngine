@@ -24,6 +24,7 @@ public:
     sf::Image image;
     sf::Texture texture;
     sf::Sprite sprite;
+    bool showSprite = 1;
     bool showHitboxesBoundary = 0;
 
 };

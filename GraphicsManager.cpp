@@ -24,7 +24,8 @@
     {
         for (Renderer* currrend : Renderers)
         {
-            window->draw(currrend->sprite);
+            if (currrend->showSprite)
+                window->draw(currrend->sprite);
             if (currrend->showHitboxesBoundary)
             {
                 for (sf::ConvexShape hitbox : currrend->gameObject->GetComponent<Collider>()->hitboxes)
