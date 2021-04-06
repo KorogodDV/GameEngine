@@ -40,3 +40,28 @@ void Applications::Run()
             window->display();
         }
     }
+
+Storages* Applications::GetStorage()
+{
+    return this->Storage;
+}
+
+ScriptManagers* Applications::GetScriptManager()
+{
+    return this->ScriptManager;
+}
+
+PhysicsManagers* Applications::GetPhysicsManager()
+{
+    return this->PhysicsManager;
+}
+
+GraphicsManagers* Applications::GetGraphicsManager()
+{
+    return this->GraphicsManager;
+}
+
+sf::RenderWindow* Applications::GetWindow()
+{
+    return this->window;
+}
