@@ -8,7 +8,7 @@
 class Storages;
 
 class Applications {
-public:
+
 	Storages* Storage;
 	ScriptManagers* ScriptManager;
 	PhysicsManagers* PhysicsManager;
@@ -17,7 +17,20 @@ public:
     int window_length;
     int window_width;
 
+public:
+
 	Applications();
 
 	void Run();
+
+	Storages* GetStorage();
+
+	ScriptManagers* GetScriptManager();
+
+	PhysicsManagers* GetPhysicsManager();
+
+	GraphicsManagers* GetGraphicsManager();
+
+	sf::RenderWindow* GetWindow();
+
 };

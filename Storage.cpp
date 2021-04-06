@@ -102,8 +102,8 @@ void Storages::DeleteObject(std::string name)
 	if (searchRes != GameObjects.end())
 		obj = &(*searchRes);
 	assert(obj);
-	application->GraphicsManager->RemoveRenderer(obj);
-	application->PhysicsManager->RemovePhysics(obj);
-	application->ScriptManager->RemoveScript(obj);
+	application->GetGraphicsManager()->RemoveRenderer(obj);
+	application->GetPhysicsManager()->RemovePhysics(obj);
+	application->GetScriptManager()->RemoveScript(obj);
 	GameObjects.remove(*obj);
 }
