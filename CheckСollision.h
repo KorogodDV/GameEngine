@@ -1,26 +1,28 @@
 #pragma once
+#include <SFML/Graphics.hpp>
+#include <iostream>
 
-float scalar_prod(sf::Vector2f v_1, sf::Vector2f v_2 )
+inline float scalar_prod(sf::Vector2f v_1, sf::Vector2f v_2 )
 {
 	return v_1.x * v_2.x + v_1.y * v_2.y;
 }
 
-float projection(sf::Vector2f v_1, sf::Vector2f v_2)
+inline float projection(sf::Vector2f v_1, sf::Vector2f v_2)
 {
 	return scalar_prod(v_1, v_2) / sqrt(scalar_prod(v_1, v_1));
 }
 
-sf::Vector2f projection_v(sf::Vector2f v_1, sf::Vector2f v_2)
+inline sf::Vector2f projection_v(sf::Vector2f v_1, sf::Vector2f v_2)
 {
 	return v_1 * scalar_prod(v_1, v_2) / scalar_prod(v_1, v_1);
 }
 
-sf::Vector2f ort(sf::Vector2f v)
+inline sf::Vector2f ort(sf::Vector2f v)
 {
 	return sf::Vector2f(-v.y, v.x);
 }
 
-sf::Vector2f cord_Pr(sf::ConvexShape Hitbox, sf::Vector2f line,  sf::Vector2f point_0)
+inline sf::Vector2f cord_Pr(sf::ConvexShape Hitbox, sf::Vector2f line,  sf::Vector2f point_0)
 {
 	float min = (projection(line, Hitbox.getPoint(0) - point_0));
 	float max = (projection(line, Hitbox.getPoint(0) - point_0));
@@ -36,7 +38,7 @@ sf::Vector2f cord_Pr(sf::ConvexShape Hitbox, sf::Vector2f line,  sf::Vector2f po
 	return sf::Vector2f(min, max);
 }
 
-bool checkCollision(sf::ConvexShape Hitbox1, sf::ConvexShape Hitbox2)
+inline bool checkCollision(sf::ConvexShape Hitbox1, sf::ConvexShape Hitbox2)
 {
 	for (int i = 0; i < Hitbox1.getPointCount(); i++)
 	{
@@ -71,7 +73,7 @@ bool checkCollision(sf::ConvexShape Hitbox1, sf::ConvexShape Hitbox2)
 	return true;
 }
 
-void mymove(sf::ConvexShape* Hitbox, sf::Vector2f speed, float t)
+inline void mymove(sf::ConvexShape* Hitbox, sf::Vector2f speed, float t)
 {
 	//std::cout << 1 << std::endl;
 	for (int i = 0; i < Hitbox->getPointCount(); i++)
@@ -81,9 +83,9 @@ void mymove(sf::ConvexShape* Hitbox, sf::Vector2f speed, float t)
 	}
 }
 
-void collide(sf::ConvexShape* Hitbox1, sf::ConvexShape* Hitbox2, sf::Vector2f speed1, sf::Vector2f speed2, float t)
+inline void collide(sf::ConvexShape* Hitbox1, sf::ConvexShape* Hitbox2, sf::Vector2f speed1, sf::Vector2f speed2, float t)
 {
-	std::cout << 2 << std::endl;
+	//std::cout << 2 << std::endl;
 	sf::Vector2f Pr_speed1;
 	sf::Vector2f Pr_speed2;
 	if (speed1 + speed2 == sf::Vector2f(0, 0))
