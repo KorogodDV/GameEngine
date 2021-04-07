@@ -16,10 +16,13 @@ Applications::Applications()
         window_length = 1280;
         window_width = 720;
         window = new sf::RenderWindow(sf::VideoMode(window_length, window_width), "App");
+        window->setFramerateLimit(60);
     }
 
 void Applications::Run()
     {
+        sf::Clock clock;
+
         while (window->isOpen())
         {
             sf::Event event;
@@ -33,9 +36,10 @@ void Applications::Run()
                 }
             }
 
+            sf::Time time = clock.restart();
             window->clear();
             GraphicsManager->draw(window);
-            PhysicsManager->update();
+            PhysicsManager->update(time);
             ScriptManager->update();
             window->display();
         }
