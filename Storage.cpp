@@ -76,8 +76,8 @@ void Storages::CreateBasicObject(std::string objparams)
 
 void Storages::UploadScene(std::string address)
 {
-	for (GameObject obj : GameObjects)
-		this->DeleteObject(obj.name);
+	while (GameObjects.size() != 0)
+		this->DeleteObject(GameObjects.front().name);
 
 	std::string scene = uploadBufferFromFile(("scenes/" + address).c_str());
 	std::vector<std::string> objects;

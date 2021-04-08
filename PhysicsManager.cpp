@@ -31,7 +31,7 @@ void PhysicsManagers::RemovePhysics(Physics* physics)
 
 void PhysicsManagers::RemovePhysics(GameObject* obj)
     {
-        PhysicsComps.remove_if([obj](Physics* physics) { return  physics->gameObject == obj; });
+        PhysicsComps.remove_if([obj](Physics* physics) { return  physics->gameObject->name == obj->name; });
     }
 
 void PhysicsManagers::update()
