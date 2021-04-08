@@ -16,6 +16,7 @@ class Applications {
 	sf::RenderWindow* window;
     int window_length;
     int window_width;
+	sf::Clock LastFrameDuration;
 
 public:
 
@@ -32,5 +33,7 @@ public:
 	GraphicsManagers* GetGraphicsManager();
 
 	sf::RenderWindow* GetWindow();
+
+	float GetLastFrameDurationAsSeconds();
 
 };

@@ -34,7 +34,7 @@ void PhysicsManagers::RemovePhysics(GameObject* obj)
         PhysicsComps.remove_if([obj](Physics* physics) { return  physics->gameObject == obj; });
     }
 
-void PhysicsManagers::update(sf::Time time)
+void PhysicsManagers::update()
 {
     for (auto iter = PhysicsComps.begin(); iter != PhysicsComps.end(); ++iter)
     {
@@ -53,9 +53,6 @@ void PhysicsManagers::update(sf::Time time)
                 }
             }
         }
-        mymove(&(*(*iter)->gameObject->GetComponent<Collider>()->hitboxes.begin()), (*iter)->speed, time.asSeconds());
-        ((*iter)->gameObject->GetComponent<Renderer>()->sprite).move(time.asSeconds() * (*iter)->speed);
-        //std::cout << (*(*iter)->gameObject->GetComponent<Collider>()->hitboxes.begin()).getPoint(0).x << std::endl;
     }
     
 };

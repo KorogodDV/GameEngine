@@ -73,17 +73,7 @@ inline bool checkCollision(sf::ConvexShape Hitbox1, sf::ConvexShape Hitbox2)
 	return true;
 }
 
-inline void mymove(sf::ConvexShape* Hitbox, sf::Vector2f speed, float t)
-{
-	//std::cout << 1 << std::endl;
-	for (int i = 0; i < Hitbox->getPointCount(); i++)
-	{
-		Hitbox->setPoint(i, Hitbox->getPoint(i) + speed * t);
-		//std::cout << Hitbox->getPoint(i).x << Hitbox->getPoint(i).y << std::endl;
-	}
-}
-
-inline void collide(sf::ConvexShape* Hitbox1, sf::ConvexShape* Hitbox2, sf::Vector2f speed1, sf::Vector2f speed2, float t)
+/*inline void collide(sf::ConvexShape* Hitbox1, sf::ConvexShape* Hitbox2, sf::Vector2f speed1, sf::Vector2f speed2, float t)
 {
 	//std::cout << 2 << std::endl;
 	sf::Vector2f Pr_speed1;
@@ -120,5 +110,5 @@ inline void collide(sf::ConvexShape* Hitbox1, sf::ConvexShape* Hitbox2, sf::Vect
 		}
 	
 	}
-}
+}*/
 

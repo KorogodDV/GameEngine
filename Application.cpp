@@ -17,12 +17,11 @@ Applications::Applications()
         window_width = 720;
         window = new sf::RenderWindow(sf::VideoMode(window_length, window_width), "App");
         window->setFramerateLimit(60);
+        LastFrameDuration = *new sf::Clock;
     }
 
 void Applications::Run()
     {
-        sf::Clock clock;
-
         while (window->isOpen())
         {
             sf::Event event;
@@ -36,12 +35,12 @@ void Applications::Run()
                 }
             }
 
-            sf::Time time = clock.restart();
             window->clear();
             GraphicsManager->draw(window);
-            PhysicsManager->update(time);
+            PhysicsManager->update();
             ScriptManager->update();
             window->display();
+            LastFrameDuration.restart();
         }
     }
 
@@ -68,4 +67,9 @@ GraphicsManagers* Applications::GetGraphicsManager()
 sf::RenderWindow* Applications::GetWindow()
 {
     return this->window;
+}
+
+float Applications::GetLastFrameDurationAsSeconds()
+{
+    return LastFrameDuration.getElapsedTime().asSeconds();
 }

@@ -55,6 +55,8 @@ public:
             delete components[typeid(T).name()];
         components.erase(typeid(T).name());
     }
+
+    Applications* GetApplication();
 };
 
 inline bool operator==(GameObject obj1, GameObject obj2)

@@ -24,7 +24,7 @@ public:
 
     void RemovePhysics(GameObject* obj);
 
-    void update(sf::Time time);
+    void update();
 
     int size();
 

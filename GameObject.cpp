@@ -16,3 +16,8 @@ GameObject::GameObject(std::string name, Applications* app)
     this->name = name;
     application = app;
 }
+
+Applications* GameObject::GetApplication()
+{
+    return this->application;
+}
