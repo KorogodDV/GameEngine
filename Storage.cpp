@@ -39,6 +39,7 @@ void Storages::CreateBasicObject(std::string objparams)
 	{
 		obj->AddComponent<Physics>();
 		Physics* physics = obj->GetComponent<Physics>();
+		physics->pos = sf::Vector2f(std::stof(param[3]), std::stof(param[4]));
 		physics->speed = sf::Vector2f(std::stof(param[5]), std::stof(param[6]));
 		physics->mass = std::stof(param[8]);
 		physics->gravity = std::stof(param[9]);

@@ -47,6 +47,7 @@ void PhysicsManagers::update(sf::Time time)
                     if (checkCollision((*(*iter)->gameObject->GetComponent<Collider>()->hitboxes.begin()), (*(*iter1)->gameObject->GetComponent<Collider>()->hitboxes.begin())))
                     {
                         app->GetScriptManager()->ObjectOnCollide((*iter)->gameObject);
+                        app->GetScriptManager()->ObjectOnCollide((*iter1)->gameObject);
                         //collide(&(*(*iter)->gameObject->GetComponent<Collider>()->hitboxes.begin()), &(*(*iter1)->gameObject->GetComponent<Collider>()->hitboxes.begin()), (*iter)->speed, (*iter1)->speed, 0.1);
                     }
                 }

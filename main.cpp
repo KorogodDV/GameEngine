@@ -8,6 +8,17 @@
 #include "Application.h"
 #include "uploadingStringFromTxt.h"
 
+class Controller : public Script {
+
+public:
+
+    void execute()
+    {
+        gameObject->GetComponent<Physics>()->acceleration = sf::Vector2f(sf::Mouse::getPosition());
+    }
+
+};
+
 int main()
 {
     Applications App;

@@ -40,6 +40,7 @@ public:
 class Physics : public Component {
 public:
 
+    sf::Vector2f pos = sf::Vector2f(0, 0);
     sf::Vector2f speed = sf::Vector2f(0, 0);
     sf::Vector2f acceleration = sf::Vector2f(0, 0);
 
