@@ -37,6 +37,7 @@ void Storages::CreateBasicObject(std::string objparams)
 
 	if (param[1] == "ball")
 	{
+		obj->AddComponent<Move>();
 		obj->AddComponent<Physics>();
 		Physics* physics = obj->GetComponent<Physics>();
 		physics->pos = sf::Vector2f(std::stof(param[3]), std::stof(param[4]));
@@ -75,8 +76,8 @@ void Storages::CreateBasicObject(std::string objparams)
 
 void Storages::UploadScene(std::string address)
 {
-	for (GameObject obj : GameObjects)
-		this->DeleteObject(obj.name);
+	while (GameObjects.size() != 0)
+		this->DeleteObject(GameObjects.front().name);
 
 	std::string scene = uploadBufferFromFile(("scenes/" + address).c_str());
 	std::vector<std::string> objects;

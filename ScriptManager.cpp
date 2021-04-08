@@ -28,7 +28,7 @@ void ScriptManagers::RemoveScript(Script* script)
 
 void ScriptManagers::RemoveScript(GameObject* obj)
 {
-    scripts.remove_if([obj](Script* script) { return  script->gameObject == obj; });
+    scripts.remove_if([obj](Script* script) { return  script->gameObject->name == obj->name; });
 }
 
 void ScriptManagers::ObjectOnCollide(GameObject* obj)

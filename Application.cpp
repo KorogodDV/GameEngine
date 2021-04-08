@@ -7,14 +7,12 @@
 #include <SFML/Graphics.hpp>
 #include "Application.h"
 
-Applications::Applications()
+Applications::Applications(int window_length, int window_width)
     {
         Storage = new Storages(this);
         ScriptManager = new ScriptManagers(this);
         PhysicsManager = new PhysicsManagers(this);
         GraphicsManager = new GraphicsManagers(this);
-        window_length = 1280;
-        window_width = 720;
         window = new sf::RenderWindow(sf::VideoMode(window_length, window_width), "App");
         window->setFramerateLimit(60);
         LastFrameDuration = *new sf::Clock;

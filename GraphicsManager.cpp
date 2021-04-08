@@ -28,7 +28,8 @@ void GraphicsManagers::RemoveRenderer(Renderer* rend)
 
 void GraphicsManagers::RemoveRenderer(GameObject* obj)
 {
-    Renderers.remove_if([obj](Renderer* rend) { return  rend->gameObject == obj; });
+    std::cout << 1;
+    Renderers.remove_if([obj](Renderer* rend) { return  rend->gameObject->name == obj->name; });
 }
 
 void GraphicsManagers::draw(sf::RenderWindow* window)

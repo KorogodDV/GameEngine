@@ -19,25 +19,11 @@ public:
         else
             gameObject->GetComponent<Physics>()->acceleration = sf::Vector2f(0, 0);
     }
-
 };
 
-class Move : public Script {
-
-public:
-
-    void execute()
-    {
-        gameObject->GetComponent<Physics>()->speed += gameObject->GetComponent<Physics>()->acceleration * gameObject->GetApplication()->GetLastFrameDurationAsSeconds();
-        gameObject->GetComponent<Physics>()->pos += gameObject->GetComponent<Physics>()->speed * gameObject->GetApplication()->GetLastFrameDurationAsSeconds();
-        (gameObject->GetComponent<Renderer>()->sprite).move(gameObject->GetApplication()->GetLastFrameDurationAsSeconds() * gameObject->GetComponent<Physics>()->speed);
-        for (int i = 0; i < gameObject->GetComponent<Collider>()->hitboxes.begin()->getPointCount(); i++)
-        {
-            gameObject->GetComponent<Collider>()->hitboxes.begin()->setPoint(i, gameObject->GetComponent<Collider>()->hitboxes.begin()->getPoint(i) + gameObject->GetComponent<Physics>()->speed * gameObject->GetApplication()->GetLastFrameDurationAsSeconds());
-        }
-    }
-
-};
+int main()
+{
+    Applications App(1600, 900);
 
 class RemoveBall : public Script {
 
@@ -53,13 +39,9 @@ int main()
 {
     Applications App;
     App.GetStorage()->UploadScene("main scene.txt");
-    App.GetStorage()->GetObject("ball1")->AddComponent<Controller>();
-    App.GetStorage()->GetObject("ball1")->AddComponent<Move>();
-    App.GetStorage()->GetObject("ball2")->AddComponent<Move>();
-    App.GetStorage()->GetObject("ball3")->AddComponent<Move>();
-    App.GetStorage()->GetObject("ball2")->AddComponent<RemoveBall>();
-    App.GetStorage()->GetObject("ball3")->AddComponent<RemoveBall>();
+    //App.GetStorage()->UploadScene("Catching Balls normal main scene.txt");
 
+    App.GetStorage()->GetObject("ball1")->AddComponent<Controller>();
 
     App.Run();
 
