@@ -4,13 +4,19 @@
 #include "Components.h"
 
 class GameObject;
+class Applications;
 
 class PhysicsManagers {
 private:
 
+    Applications* app;
     std::list<Physics*> PhysicsComps;
 
 public:
+
+    PhysicsManagers(Applications* app);
+
+    Applications* GetApplication();
 
     void AddPhysics(Physics* newphysics);
 
