@@ -37,6 +37,7 @@ void Storages::CreateBasicObject(std::string objparams)
 
 	if (param[1] == "ball")
 	{
+		obj->AddComponent<Move>();
 		obj->AddComponent<Physics>();
 		Physics* physics = obj->GetComponent<Physics>();
 		physics->pos = sf::Vector2f(std::stof(param[3]), std::stof(param[4]));

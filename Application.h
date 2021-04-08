@@ -14,13 +14,11 @@ class Applications {
 	PhysicsManagers* PhysicsManager;
 	GraphicsManagers* GraphicsManager;
 	sf::RenderWindow* window;
-    int window_length;
-    int window_width;
 	sf::Clock LastFrameDuration;
 
 public:
 
-	Applications();
+	Applications(int window_length = 1280, int window_width = 720);
 
 	void Run();
 

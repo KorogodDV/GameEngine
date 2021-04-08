@@ -51,15 +51,10 @@ public:
 
 };
 
-class TestScript : public Script {
-
-    int val = 10;
+class Move : public Script {
 
 public:
 
-    void onCollide()
-    {
-        std::cout << val << "   ";
-    }
+    void execute();
 };
 

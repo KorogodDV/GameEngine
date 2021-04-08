@@ -1,0 +1,20 @@
+/ templates
+/ name typename
+/ name ball sprite_address centre_pos_x centre_pos_y speed_x speed_y radius mass gravity collison_type count_of_vertexes
+main_ball ball yellow_ball.png 640 360 0 0 20 1 0 1 10
+ball1 ball red_ball.png 100 100 0 0 10 1 0 1 10
+ball2 ball red_ball.png 1500 100 0 0 10 1 0 1 10
+ball3 ball red_ball.png 100 200 0 0 10 1 0 1 10
+ball4 ball red_ball.png 1500 200 0 0 10 1 0 1 10
+ball5 ball red_ball.png 100 300 0 0 10 1 0 1 10
+ball6 ball red_ball.png 1500 300 0 0 10 1 0 1 10
+ball7 ball red_ball.png 100 400 0 0 10 1 0 1 10
+ball8 ball red_ball.png 1500 400 0 0 10 1 0 1 10
+ball9 ball red_ball.png 100 500 0 0 10 1 0 1 10
+ball10 ball red_ball.png 1500 500 0 0 10 1 0 1 10
+ball11 ball red_ball.png 100 600 0 0 10 1 0 1 10
+ball12 ball red_ball.png 1500 600 0 0 10 1 0 1 10
+ball13 ball red_ball.png 100 700 0 0 10 1 0 1 10
+ball14 ball red_ball.png 1500 700 0 0 10 1 0 1 10
+ball15 ball red_ball.png 100 800 0 0 10 1 0 1 10
+ball16 ball red_ball.png 1500 800 0 0 10 1 0 1 10
