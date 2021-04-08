@@ -39,6 +39,16 @@ public:
 
 };
 
+class RemoveBall : public Script {
+
+public:
+
+    void execute()
+    {
+        gameObject->GetApplication()->GetStorage()->DeleteObject(gameObject->name);
+    }
+};
+
 int main()
 {
     Applications App;
@@ -47,6 +57,8 @@ int main()
     App.GetStorage()->GetObject("ball1")->AddComponent<Move>();
     App.GetStorage()->GetObject("ball2")->AddComponent<Move>();
     App.GetStorage()->GetObject("ball3")->AddComponent<Move>();
+    App.GetStorage()->GetObject("ball2")->AddComponent<RemoveBall>();
+    App.GetStorage()->GetObject("ball3")->AddComponent<RemoveBall>();
 
 
     App.Run();
