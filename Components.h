@@ -56,7 +56,7 @@ class TestScript : public Script {
 
 public:
 
-    void execute()
+    void onCollide()
     {
         std::cout << val << "   ";
     }

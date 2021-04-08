@@ -10,9 +10,9 @@
 Applications::Applications()
     {
         Storage = new Storages(this);
-        ScriptManager = new ScriptManagers;
-        PhysicsManager = new PhysicsManagers;
-        GraphicsManager = new GraphicsManagers;
+        ScriptManager = new ScriptManagers(this);
+        PhysicsManager = new PhysicsManagers(this);
+        GraphicsManager = new GraphicsManagers(this);
         window_length = 1280;
         window_width = 720;
         window = new sf::RenderWindow(sf::VideoMode(window_length, window_width), "App");
