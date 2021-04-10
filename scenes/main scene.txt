@@ -1,6 +1,6 @@
 / templates
 / name typename
-/ name ball sprite_address centre_pos_x centre_pos_y speed_x speed_y radius mass gravity collison_type count_of_vertexes
+/ name ball sprite_address centre_pos_x centre_pos_y speed_x speed_y radius mass gravity collison_type amount_of_vertexes_in_hitbox
 ball1 ball red_ball.png 200 200 1000 0 20 1 0 1 10
 ball2 ball red_ball.png 500 200 -1000 0 30 1 0 1 10
 ball3 ball red_ball.png 200 500 0 0 50 1 0 0 10

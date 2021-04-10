@@ -26,7 +26,6 @@ public:
 
     void onCollide()
     {
-       // std::cout << 2 << std::endl;
         (gameObject->GetApplication()->GetObjectsForRemove())->push_back(gameObject->name);
     }
 };
