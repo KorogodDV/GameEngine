@@ -14,7 +14,7 @@ public:
     void execute()
     {
         if (0 < sf::Mouse::getPosition(*gameObject->GetApplication()->GetWindow()).x < gameObject->GetApplication()->GetWindow()->getSize().x or 0 < sf::Mouse::getPosition(*gameObject->GetApplication()->GetWindow()).y < gameObject->GetApplication()->GetWindow()->getSize().y)
-            gameObject->GetComponent<Physics>()->acceleration = (sf::Vector2f(sf::Mouse::getPosition(*gameObject->GetApplication()->GetWindow())) - gameObject->GetComponent<Physics>()->pos) * 10.f ;
+            gameObject->GetComponent<Physics>()->acceleration = ((sf::Vector2f(sf::Mouse::getPosition(*gameObject->GetApplication()->GetWindow())) - gameObject->GetComponent<Physics>()->pos)) /  ;
         else
             gameObject->GetComponent<Physics>()->acceleration = sf::Vector2f(0, 0);
     }
