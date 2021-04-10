@@ -1,26 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
-
-inline float scalar_prod(sf::Vector2f v_1, sf::Vector2f v_2 )
-{
-	return v_1.x * v_2.x + v_1.y * v_2.y;
-}
-
-inline float projection(sf::Vector2f v_1, sf::Vector2f v_2)
-{
-	return scalar_prod(v_1, v_2) / sqrt(scalar_prod(v_1, v_1));
-}
-
-inline sf::Vector2f projection_v(sf::Vector2f v_1, sf::Vector2f v_2)
-{
-	return v_1 * scalar_prod(v_1, v_2) / scalar_prod(v_1, v_1);
-}
-
-inline sf::Vector2f ort(sf::Vector2f v)
-{
-	return sf::Vector2f(-v.y, v.x);
-}
+#include "VectorMath.h"
 
 inline sf::Vector2f cord_Pr(sf::ConvexShape Hitbox, sf::Vector2f line,  sf::Vector2f point_0)
 {

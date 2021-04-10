@@ -5,13 +5,13 @@
 #include "Components.h"
 #include "GameObject.h"
 #include "Application.h"
-#include "math.h"
+#include "VectorMath.h"
 
 void Move::execute()
 {
     gameObject->GetComponent<Physics>()->speed += gameObject->GetComponent<Physics>()->acceleration * gameObject->GetApplication()->GetLastFrameDurationAsSeconds();
-    //if (gameObject->GetComponent<Physics>()->speed.x * gameObject->GetComponent<Physics>()->speed.x + gameObject->GetComponent<Physics>()->speed.y * gameObject->GetComponent<Physics>()->speed.y < 100)
-        //gameObject->GetComponent<Physics>()->speed = gameObject->GetComponent<Physics>()->speed / (sqrt(gameObject->GetComponent<Physics>()->speed.x * gameObject->GetComponent<Physics>()->speed.x + gameObject->GetComponent<Physics>()->speed.y * gameObject->GetComponent<Physics>()->speed.y) + 1) * 10.f;
+   if (len(gameObject->GetComponent<Physics>()->speed) < 40000)
+        gameObject->GetComponent<Physics>()->speed = normalize(gameObject->GetComponent<Physics>()->speed) * 200.f;
     gameObject->GetComponent<Physics>()->pos += gameObject->GetComponent<Physics>()->speed * gameObject->GetApplication()->GetLastFrameDurationAsSeconds();
     (gameObject->GetComponent<Renderer>()->sprite).move(gameObject->GetApplication()->GetLastFrameDurationAsSeconds() * gameObject->GetComponent<Physics>()->speed);
     for (int i = 0; i < gameObject->GetComponent<Collider>()->hitboxes.begin()->getPointCount(); i++)
