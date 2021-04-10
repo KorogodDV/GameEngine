@@ -36,18 +36,31 @@ void ScriptManagers::ObjectOnCollide(GameObject* obj)
     for (Script* script : scripts)
     {
         if (script->gameObject->name == obj->name)
+        {
+            //std::cout << obj->name << std::endl;
             script->onCollide();
+            std::cout << obj->name << std::endl;
+        }
     }
 }
 
 void ScriptManagers::update()
 {
-    for (Script* currscript : scripts)
-        currscript->execute();
+    int scripts_len = scripts.size();
+    auto iter = scripts.begin();
+    while (iter != scripts.end())
+    {
+        (*iter)->execute();
+        if (scripts_len > scripts.size())
+        {
+            --iter;
+            scripts_len = scripts.size();
+        }
+        ++iter;
+    }
 }
 
 int ScriptManagers::size()
 {
     return scripts.size();
 }
-

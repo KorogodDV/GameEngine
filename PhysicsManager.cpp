@@ -36,26 +36,51 @@ void PhysicsManagers::RemovePhysics(GameObject* obj)
 
 void PhysicsManagers::update()
 {
-    for (auto iter = PhysicsComps.begin(); iter != PhysicsComps.end(); ++iter)
+    int PhysicsComps_len = PhysicsComps.size();
+    auto iter = PhysicsComps.begin();
+    while (iter != PhysicsComps.end())
     {
+        bool collide_iter = false;
         if ((*iter)->collisionType)
         {
-            for (auto iter1 = next(iter); iter1 != PhysicsComps.end(); ++iter1)
+            int PhysicsComps_len1 = PhysicsComps.size();
+            auto iter1 = next(iter);
+            while (iter1 != PhysicsComps.end())
             {
                 if ((*iter1)->collisionType)
                 {
                     if (checkCollision((*(*iter)->gameObject->GetComponent<Collider>()->hitboxes.begin()), (*(*iter1)->gameObject->GetComponent<Collider>()->hitboxes.begin())))
                     {
-                        app->GetScriptManager()->ObjectOnCollide((*iter)->gameObject);
+                        collide_iter = true;
                         app->GetScriptManager()->ObjectOnCollide((*iter1)->gameObject);
                         //collide(&(*(*iter)->gameObject->GetComponent<Collider>()->hitboxes.begin()), &(*(*iter1)->gameObject->GetComponent<Collider>()->hitboxes.begin()), (*iter)->speed, (*iter1)->speed, 0.1);
                     }
                 }
+                if (PhysicsComps_len1 > PhysicsComps.size())
+                {
+                    --iter1;
+                    PhysicsComps_len = PhysicsComps.size();
+                    PhysicsComps_len1 = PhysicsComps.size();
+                }
+                ++iter1;
             }
         }
+
+        if (collide_iter)
+        {
+            app->GetScriptManager()->ObjectOnCollide((*iter)->gameObject);
+        }
+
+        if (PhysicsComps_len > PhysicsComps.size())
+        {
+            --iter;
+            PhysicsComps_len = PhysicsComps.size();
+        }
+        ++iter;
+    //std::cout << "\n \n \n";
     }
     
-};
+}
 
 int PhysicsManagers::size()
     {

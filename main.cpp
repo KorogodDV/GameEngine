@@ -11,7 +11,6 @@
 class Controller : public Script {
 
 public:
-
     void execute()
     {
         if (0 < sf::Mouse::getPosition(*gameObject->GetApplication()->GetWindow()).x < gameObject->GetApplication()->GetWindow()->getSize().x or 0 < sf::Mouse::getPosition(*gameObject->GetApplication()->GetWindow()).y < gameObject->GetApplication()->GetWindow()->getSize().y)
@@ -21,27 +20,27 @@ public:
     }
 };
 
-int main()
-{
-    Applications App(1600, 900);
-
 class RemoveBall : public Script {
 
 public:
 
-    void execute()
+    void onCollide()
     {
-        gameObject->GetApplication()->GetStorage()->DeleteObject(gameObject->name);
+       // std::cout << 2 << std::endl;
+        (gameObject->GetApplication()->GetObjectsForRemove())->push_back(gameObject->name);
     }
 };
 
 int main()
 {
-    Applications App;
+    Applications App(1600, 900);
+
     App.GetStorage()->UploadScene("main scene.txt");
     //App.GetStorage()->UploadScene("Catching Balls normal main scene.txt");
 
     App.GetStorage()->GetObject("ball1")->AddComponent<Controller>();
+    App.GetStorage()->GetObject("ball2")->AddComponent<RemoveBall>();
+    App.GetStorage()->GetObject("ball3")->AddComponent<RemoveBall>();
 
     App.Run();
 

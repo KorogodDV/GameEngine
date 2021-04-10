@@ -4,6 +4,7 @@
 #include "ScriptManager.h"
 #include "GameObject.h"
 #include <SFML/Graphics.hpp>
+#include <list>
 
 class Storages;
 
@@ -15,6 +16,7 @@ class Applications {
 	GraphicsManagers* GraphicsManager;
 	sf::RenderWindow* window;
 	sf::Clock LastFrameDuration;
+	std::list<std::string> ObjectsForRemove;
 
 public:
 
@@ -33,5 +35,7 @@ public:
 	sf::RenderWindow* GetWindow();
 
 	float GetLastFrameDurationAsSeconds();
+
+	std::list<std::string>* GetObjectsForRemove();
 
 };
