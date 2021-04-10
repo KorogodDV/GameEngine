@@ -44,7 +44,7 @@ int main()
      App.GetStorage()->GetObject("ball" + std::to_string(i + 1))->AddComponent<RemoveBall>();
 
     //for (int i = 0; i < 232; i++)
-        //std::cout << "ball" + std::to_string(i + 1) + " ball red_ball.png " + std::to_string(100 + 50 * (i % 29)) + " " + std::to_string(100 * (1 + i / 29)) + " 0 0 10 1 0 1 4" << std::endl;
+      //  std::cout << "ball" + std::to_string(i + 1) + " ball red_ball.png " + std::to_string(100 + 50 * (i % 29)) + " " + std::to_string(100 * (1 + i / 29)) + " 0 0 10 1 0 1 10" << std::endl;
 
     App.Run();
 
