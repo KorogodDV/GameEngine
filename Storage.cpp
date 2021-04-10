@@ -61,7 +61,7 @@ void Storages::CreateBasicObject(std::string objparams)
 
 		obj->AddComponent<Renderer>();
 		Renderer* rend = obj->GetComponent<Renderer>();
-		rend->showHitboxesBoundary = 1;
+		//rend->showHitboxesBoundary = 1;
 		//rend->showSprite = 0;
 		rend->image.loadFromFile("textures/"/*ball.png*/ + param[2]);
 		rend->image.createMaskFromColor(sf::Color::White);
