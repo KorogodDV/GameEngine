@@ -15,7 +15,8 @@ class Applications {
 	PhysicsManagers* PhysicsManager;
 	GraphicsManagers* GraphicsManager;
 	sf::RenderWindow* window;
-	sf::Clock LastFrameDuration;
+	sf::Clock WorkTime;
+	float LastFrameDuration;
 	std::list<std::string> ObjectsForRemove;
 
 public:
