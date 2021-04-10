@@ -37,9 +37,7 @@ void ScriptManagers::ObjectOnCollide(GameObject* obj)
     {
         if (script->gameObject->name == obj->name)
         {
-            //std::cout << obj->name << std::endl;
             script->onCollide();
-            std::cout << obj->name << std::endl;
         }
     }
 }
