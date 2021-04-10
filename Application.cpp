@@ -39,12 +39,12 @@ void Applications::Run()
             PhysicsManager->update();
             ScriptManager->update();
             window->display();
-            LastFrameDuration.restart();
             for (std::string gameObject_name : ObjectsForRemove)
             {
                 Storage->DeleteObject(gameObject_name);
             }
             ObjectsForRemove.clear();
+            LastFrameDuration.restart();
         }
     }
 
@@ -73,9 +73,9 @@ sf::RenderWindow* Applications::GetWindow()
     return this->window;
 }
 
-float Applications::GetLastFrameDurationAsSeconds()
+float Applications::GetLastFrameDurationAsMilliSeconds()
 {
-    return LastFrameDuration.getElapsedTime().asSeconds();
+    return LastFrameDuration.getElapsedTime().asMilliseconds();
 }
 
 std::list<std::string>* Applications::GetObjectsForRemove()

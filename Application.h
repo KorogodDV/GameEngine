@@ -34,7 +34,7 @@ public:
 
 	sf::RenderWindow* GetWindow();
 
-	float GetLastFrameDurationAsSeconds();
+	float GetLastFrameDurationAsMilliSeconds();
 
 	std::list<std::string>* GetObjectsForRemove();
 
