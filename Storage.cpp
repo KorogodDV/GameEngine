@@ -30,7 +30,7 @@ void Storages::CreateObject(std::string name)
 
 void Storages::CreateBall(std::vector<std::string> param)
 {
-	GameObject* obj = new GameObject(param[1], application);
+	GameObject* obj = new GameObject(param[1], application, param[0]);
 
 	obj->AddComponent<Move>();
 	obj->AddComponent<Physics>();
@@ -68,48 +68,9 @@ void Storages::CreateBall(std::vector<std::string> param)
 	GameObjects.push_back(*obj);
 }
 
-void Storages::CreatePlayer(std::vector<std::string> param)
-{
-	GameObject* obj = new GameObject(param[1], application);
-
-	obj->AddComponent<Move>();
-	obj->AddComponent<Physics>();
-	Physics* physics = obj->GetComponent<Physics>();
-	physics->pos = sf::Vector2f(std::stof(param[3]), std::stof(param[4]));
-	physics->speed = sf::Vector2f(std::stof(param[5]), std::stof(param[6]));
-	physics->mass = std::stof(param[9]);
-	physics->gravity = std::stof(param[10]);
-	physics->collisionType = std::stof(param[11]);
-
-	obj->AddComponent<Collider>();
-	Collider* coll = obj->GetComponent<Collider>();
-	sf::ConvexShape* newHitBox = new sf::ConvexShape(4);
-	newHitBox->setFillColor(sf::Color(0));
-	newHitBox->setOutlineColor(sf::Color::Blue);
-	newHitBox->setOutlineThickness(1);
-	newHitBox->setPoint(0, sf::Vector2f(std::stof(param[3]), std::stof(param[4])) - sf::Vector2f(std::stof(param[7]), std::stof(param[8])) / 2.f);
-	newHitBox->setPoint(1, sf::Vector2f(std::stof(param[3]), std::stof(param[4])) + sf::Vector2f(std::stof(param[7]), -1.f * std::stof(param[8])) / 2.f);
-	newHitBox->setPoint(2, sf::Vector2f(std::stof(param[3]), std::stof(param[4])) + sf::Vector2f(std::stof(param[7]), std::stof(param[8])) / 2.f);
-	newHitBox->setPoint(3, sf::Vector2f(std::stof(param[3]), std::stof(param[4])) - sf::Vector2f(std::stof(param[7]), -1.f * std::stof(param[8])) / 2.f);
-	coll->hitboxes.push_back(*newHitBox);
-
-	obj->AddComponent<Renderer>();
-	Renderer* rend = obj->GetComponent<Renderer>();
-	//rend->showHitboxesBoundary = 1;
-	//rend->showSprite = 0;
-	rend->image.loadFromFile("textures/" + param[2]);
-	rend->image.createMaskFromColor(sf::Color::White);
-	rend->texture.loadFromImage(rend->image);
-	rend->sprite.setTexture(rend->texture);
-	rend->sprite.setPosition(sf::Vector2f(std::stof(param[3]), std::stof(param[4])) - sf::Vector2f(std::stof(param[7]), std::stof(param[8])) / 2.f);
-	rend->sprite.setScale(std::stof(param[7]) / rend->sprite.getLocalBounds().width, std::stof(param[8]) / rend->sprite.getLocalBounds().height);
-
-	GameObjects.push_back(*obj);
-}
-
 void Storages::CreateBullet(std::vector<std::string> param)
 {
-	GameObject* obj = new GameObject(param[1], application);
+	GameObject* obj = new GameObject(param[1], application, param[0]);
 
 	obj->AddComponent<Move>();
 	obj->AddComponent<Physics>();
@@ -153,6 +114,45 @@ void Storages::CreateBullet(std::vector<std::string> param)
 	GameObjects.push_back(*obj);
 }
 
+void Storages::CreatePlayer(std::vector<std::string> param)
+{
+	GameObject* obj = new GameObject(param[1], application, param[0]);
+
+	obj->AddComponent<Move>();
+	obj->AddComponent<Physics>();
+	Physics* physics = obj->GetComponent<Physics>();
+	physics->pos = sf::Vector2f(std::stof(param[3]), std::stof(param[4]));
+	physics->speed = sf::Vector2f(std::stof(param[5]), std::stof(param[6]));
+	physics->mass = std::stof(param[9]);
+	physics->gravity = std::stof(param[10]);
+	physics->collisionType = std::stof(param[11]);
+
+	obj->AddComponent<Collider>();
+	Collider* coll = obj->GetComponent<Collider>();
+	sf::ConvexShape* newHitBox = new sf::ConvexShape(4);
+	newHitBox->setFillColor(sf::Color(0));
+	newHitBox->setOutlineColor(sf::Color::Blue);
+	newHitBox->setOutlineThickness(1);
+	newHitBox->setPoint(0, sf::Vector2f(std::stof(param[3]), std::stof(param[4])) - sf::Vector2f(std::stof(param[7]), std::stof(param[8])) / 2.f);
+	newHitBox->setPoint(1, sf::Vector2f(std::stof(param[3]), std::stof(param[4])) + sf::Vector2f(std::stof(param[7]), -1.f * std::stof(param[8])) / 2.f);
+	newHitBox->setPoint(2, sf::Vector2f(std::stof(param[3]), std::stof(param[4])) + sf::Vector2f(std::stof(param[7]), std::stof(param[8])) / 2.f);
+	newHitBox->setPoint(3, sf::Vector2f(std::stof(param[3]), std::stof(param[4])) - sf::Vector2f(std::stof(param[7]), -1.f * std::stof(param[8])) / 2.f);
+	coll->hitboxes.push_back(*newHitBox);
+
+	obj->AddComponent<Renderer>();
+	Renderer* rend = obj->GetComponent<Renderer>();
+	//rend->showHitboxesBoundary = 1;
+	//rend->showSprite = 0;
+	rend->image.loadFromFile("textures/" + param[2]);
+	rend->image.createMaskFromColor(sf::Color::White);
+	rend->texture.loadFromImage(rend->image);
+	rend->sprite.setTexture(rend->texture);
+	rend->sprite.setPosition(sf::Vector2f(std::stof(param[3]), std::stof(param[4])) - sf::Vector2f(std::stof(param[7]), std::stof(param[8])) / 2.f);
+	rend->sprite.setScale(std::stof(param[7]) / rend->sprite.getLocalBounds().width, std::stof(param[8]) / rend->sprite.getLocalBounds().height);
+
+	GameObjects.push_back(*obj);
+}
+
 void Storages::UploadScene(std::string address)
 {
 	while (GameObjects.size() != 0)
@@ -173,7 +173,7 @@ void Storages::UploadScene(std::string address)
 			this->CreateBall(objparams[i]);
 		else if (objparams[i][0] == "bullet")
 			this->CreateBullet(objparams[i]);
-		else if (objparams[i][0] == "player")
+		else if (objparams[i][0] == "player" || objparams[i][0] == "fast_enemy" || objparams[i][0] == "slow_enemy" || objparams[i][0] == "shooting_enemy")
 			this->CreatePlayer(objparams[i]);
 		//this->CreateBasicObject(objects[i]);
 	}

@@ -11,10 +11,11 @@
 #include "GameObject.h"
 #include "Application.h"
 
-GameObject::GameObject(std::string name, Applications* app)
+GameObject::GameObject(std::string name, Applications* app, std::string type)
 {
     this->name = name;
     application = app;
+    this->type = type;
 }
 
 Applications* GameObject::GetApplication()

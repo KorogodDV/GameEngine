@@ -18,8 +18,9 @@ class GameObject
 public:
 
     std::string name;
+    std::string type;
     
-    GameObject(std::string name, Applications* app);
+    GameObject(std::string name, Applications* app, std::string type = "");
 
     template <typename T>
     T* GetComponent()
