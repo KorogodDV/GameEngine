@@ -24,4 +24,4 @@ ball ball15 red_ball.png 100 800 0 0 10 1 0 1 10
 ball ball16 red_ball.png 1500 800 0 0 10 1 0 1 10
 bullet test_bullet bullet.png 500 500 20 0 24 5 0
 player player player.png 800 800 0 0 100 50 1 0 1
-shooting_enemy test_fast_enemy slow_enemy.png 700 700 -10 0 50 20 1 0 1
+shooting_enemy test_shooting_enemy shooting_enemy.png 700 700 -10 0 50 20 1 0 1
