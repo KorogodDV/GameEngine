@@ -20,6 +20,8 @@ public:
 
 	void CreateBall(std::vector<std::string> param);
 
+	void CreateBullet(std::vector<std::string> param);
+
 	void UploadScene(std::string address);
 
 	GameObject* GetObject(std::string name);
