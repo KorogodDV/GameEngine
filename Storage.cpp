@@ -28,14 +28,11 @@ void Storages::CreateObject(std::string name)
 	GameObjects.push_back(*(new GameObject(name, application)));
 }
 
-void Storages::CreateBasicObject(std::string objparams)
+void Storages::CreateBall(std::vector<std::string> param)
 {
-	std::vector<std::string> param;
-	split(objparams, param, ' ');
+	GameObject* obj = new GameObject(param[1], application);
 
-	GameObject* obj = new GameObject(param[0], application);
-
-	if (param[1] == "ball")
+	if (param[0] == "ball")
 	{
 		obj->AddComponent<Move>();
 		obj->AddComponent<Physics>();
@@ -54,7 +51,7 @@ void Storages::CreateBasicObject(std::string objparams)
 		newHitBox->setOutlineThickness(1);
 		for (int i = 0; i < std::stof(param[11]); i++)
 		{
-			newHitBox->setPoint(i, (sf::Vector2f(std::stof(param[3]), std::stof(param[4])) + (sf::Vector2f(0, -1 * std::stof(param[7])) - 
+			newHitBox->setPoint(i, (sf::Vector2f(std::stof(param[3]), std::stof(param[4])) + (sf::Vector2f(0, -1 * std::stof(param[7])) -
 				sf::Vector2f(-1 * std::stof(param[7]) * sin(2 * PI / std::stof(param[11]) * i), -1 * std::stof(param[7]) * (1 - cos(2 * PI / std::stof(param[11]) * i))))));
 		}
 		coll->hitboxes.push_back(*newHitBox);
@@ -80,12 +77,20 @@ void Storages::UploadScene(std::string address)
 		this->DeleteObject(GameObjects.front().name);
 
 	std::string scene = uploadBufferFromFile(("scenes/" + address).c_str());
+
 	std::vector<std::string> objects;
 	split(scene, objects, '\n');
 	while (objects[0][0] == '/')
 		objects.erase(objects.begin());
-	for (std::string newobj : objects)
-		this->CreateBasicObject(newobj);
+
+	std::vector<std::vector<std::string>> objparams(objects.size());
+	for (int i = 0; i < objects.size(); i++)
+	{
+		split(objects[i], objparams[i], ' ');
+		if (objparams[i][0] == "ball")
+			this->CreateBall(objparams[i]);
+		//this->CreateBasicObject(objects[i]);
+	}
 }
 
 

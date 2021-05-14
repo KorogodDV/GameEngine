@@ -1,6 +1,7 @@
 #pragma once
 #include <list>
 #include <string>
+#include <vector>
 #include "GameObject.h"
 
 class Applications;
@@ -17,7 +18,7 @@ public:
 
 	void CreateObject(std::string name);
 
-	void CreateBasicObject(std::string param);
+	void CreateBall(std::vector<std::string> param);
 
 	void UploadScene(std::string address);
 
