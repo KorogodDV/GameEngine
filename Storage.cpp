@@ -78,7 +78,7 @@ void Storages::CreateBullet(std::vector<std::string> param)
 	physics->pos = sf::Vector2f(std::stof(param[3]), std::stof(param[4]));
 	physics->speed = sf::Vector2f(std::stof(param[5]), std::stof(param[6]));
 	physics->mass = 0;
-	physics->gravity = std::stof(param[7]);
+	physics->gravity = std::stof(param[9]);
 	physics->collisionType = 1;
 
 	obj->AddComponent<Collider>();
@@ -87,8 +87,8 @@ void Storages::CreateBullet(std::vector<std::string> param)
 	newHitBox->setFillColor(sf::Color(0));
 	newHitBox->setOutlineColor(sf::Color::Blue);
 	newHitBox->setOutlineThickness(1);
-	float bulletLength = 24;
-	float bulletWidth = 4;
+	float bulletLength = std::stof(param[7]);
+	float bulletWidth = std::stof(param[8]);
 	for (int i = 0; i < 10; i++)
 	{
 		if (i < 5)

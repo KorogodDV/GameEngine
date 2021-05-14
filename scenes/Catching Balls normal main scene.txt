@@ -1,7 +1,8 @@
 / templates
 / typename name
 / ball name sprite_address centre_pos_x centre_pos_y speed_x speed_y radius mass gravity collison_type amount_of_vertexes_in_hitbox
-/ bullet name sprite_address left_edge_pos_x left_egde_pos_y speed_x speed_y gravity
+/ bullet name sprite_address left_edge_pos_x left_egde_pos_y speed_x speed_y length width gravity
+/ player name sprite_address centre_pos_x centre_pos_y speed_x speed_y length width mass gravity collison_type amount_of_vertexes_in_hitbox
 ball main_ball yellow_ball.png 640 360 0 0 20 1 0 1 10
 ball ball1 red_ball.png 100 100 0 0 10 1 0 1 10
 ball ball2 red_ball.png 1500 100 0 0 10 1 0 1 10
@@ -19,4 +20,4 @@ ball ball13 red_ball.png 100 700 0 0 10 1 0 1 10
 ball ball14 red_ball.png 1500 700 0 0 10 1 0 1 10
 ball ball15 red_ball.png 100 800 0 0 10 1 0 1 10
 ball ball16 red_ball.png 1500 800 0 0 10 1 0 1 10
-bullet test_bullet bullet.png 500 500 20 0 0
+bullet test_bullet bullet.png 500 500 20 0 24 5 0
