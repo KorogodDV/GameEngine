@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <string>
 #include <SFML/Graphics.hpp>
 #include "Components.h"
 
@@ -11,9 +12,10 @@ private:
 
     std::list<Renderer*> Renderers;
     Applications* app;
+    sf::Sprite background;
 
 public:
-    GraphicsManagers(Applications* app);
+    GraphicsManagers(Applications* app, std::string background_address);
 
     Applications* GetApplication();
 
@@ -24,6 +26,10 @@ public:
     void RemoveRenderer(GameObject* obj);
 
     void draw(sf::RenderWindow* window);
+
+    void SetBackground(std::string address);
+
+    sf::Sprite GetBackground();
 
     int size();
 };

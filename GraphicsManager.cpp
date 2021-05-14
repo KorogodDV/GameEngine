@@ -2,12 +2,19 @@
 #include "GraphicsManager.h"
 #include "GameObject.h"
 #include "Components.h"
+#include <string>
 #include <SFML/Graphics.hpp>
 #include "Application.h"
 
-GraphicsManagers::GraphicsManagers(Applications* app)
+GraphicsManagers::GraphicsManagers(Applications* app, std::string background_address)
 {
     Renderers = *new std::list<Renderer*>;
+    sf::Texture texture;
+    background = *new sf::Sprite;
+    texture.loadFromFile("textures/" + background_address);
+    background.setTexture(texture);
+    background.setPosition(0, 0);
+    background.setScale(app->GetWindow()->getSize().x / background.getLocalBounds().width, app->GetWindow()->getSize().y / background.getLocalBounds().height);
     this->app = app;
 }
 
@@ -33,6 +40,8 @@ void GraphicsManagers::RemoveRenderer(GameObject* obj)
 
 void GraphicsManagers::draw(sf::RenderWindow* window)
 {
+    window->clear();
+    window->draw(this->background);
     for (Renderer* currrend : Renderers)
     {
         if (currrend->showSprite)
@@ -43,6 +52,21 @@ void GraphicsManagers::draw(sf::RenderWindow* window)
                 window->draw(hitbox);
         }
     }
+    window->display();
+}
+
+void GraphicsManagers::SetBackground(std::string address)
+{
+    sf::Texture texture = *new sf::Texture;
+    texture.loadFromFile("textures/" + address);
+    this->background.setTexture(texture);
+    this->background.setPosition(0, 0);
+    this->background.setScale(app->GetWindow()->getSize().x / this->background.getLocalBounds().width, app->GetWindow()->getSize().y / this->background.getLocalBounds().height);
+}
+
+sf::Sprite GraphicsManagers::GetBackground()
+{
+    return this->background;
 }
 
 int GraphicsManagers::size()

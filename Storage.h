@@ -24,8 +24,6 @@ public:
 
 	void CreatePlayer(std::vector<std::string> param);
 
-	void CreateFastEnemy(std::vector<std::string> param);
-
 	void UploadScene(std::string address);
 
 	GameObject* GetObject(std::string name);

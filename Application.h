@@ -21,7 +21,7 @@ class Applications {
 
 public:
 
-	Applications(int window_length = 1280, int window_width = 720);
+	Applications(int window_length = 1280, int window_width = 720, std::string background_address = "white_list.png");
 
 	void Run();
 

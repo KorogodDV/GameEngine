@@ -7,13 +7,13 @@
 #include <SFML/Graphics.hpp>
 #include "Application.h"
 
-Applications::Applications(int window_length, int window_width)
+Applications::Applications(int window_length, int window_width, std::string background_address)
     {
+        window = new sf::RenderWindow(sf::VideoMode(window_length, window_width), "App");
         Storage = new Storages(this);
         ScriptManager = new ScriptManagers(this);
         PhysicsManager = new PhysicsManagers(this);
-        GraphicsManager = new GraphicsManagers(this);
-        window = new sf::RenderWindow(sf::VideoMode(window_length, window_width), "App");
+        GraphicsManager = new GraphicsManagers(this, background_address);
         window->setFramerateLimit(60);
         WorkTime = *new sf::Clock;
         LastFrameDuration = 0;
@@ -34,12 +34,9 @@ void Applications::Run()
                     break;
                 }
             }
-
-            window->clear();
             GraphicsManager->draw(window);
             PhysicsManager->update();
             ScriptManager->update();
-            window->display();
             LastFrameDuration = WorkTime.restart().asSeconds();
             for (std::string gameObject_name : ObjectsForRemove)
             {

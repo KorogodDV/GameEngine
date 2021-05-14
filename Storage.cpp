@@ -175,6 +175,8 @@ void Storages::UploadScene(std::string address)
 			this->CreateBullet(objparams[i]);
 		else if (objparams[i][0] == "player" || objparams[i][0] == "fast_enemy" || objparams[i][0] == "slow_enemy" || objparams[i][0] == "shooting_enemy")
 			this->CreatePlayer(objparams[i]);
+		else if (objparams[i][0] == "background")
+			this->application->GetGraphicsManager()->SetBackground(objparams[i][1]);
 		//this->CreateBasicObject(objects[i]);
 	}
 }
