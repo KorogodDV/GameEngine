@@ -9,11 +9,14 @@
 GraphicsManagers::GraphicsManagers(Applications* app, std::string background_address)
 {
     Renderers = *new std::list<Renderer*>;
-    sf::Texture texture;
+    backgroundImage = *new sf::Image;
+    backgroundTexture = *new sf::Texture;
     background = *new sf::Sprite;
-    texture.loadFromFile("textures/" + background_address);
-    background.setTexture(texture);
+    backgroundImage.loadFromFile("textures/" + background_address);
+    backgroundTexture.loadFromImage(backgroundImage);
+    background.setTexture(backgroundTexture);
     background.setPosition(0, 0);
+    background.setTextureRect(sf::Rect<int>(0, 0, backgroundImage.getSize().x, backgroundImage.getSize().y));
     background.setScale(app->GetWindow()->getSize().x / background.getLocalBounds().width, app->GetWindow()->getSize().y / background.getLocalBounds().height);
     this->app = app;
 }
@@ -57,10 +60,11 @@ void GraphicsManagers::draw(sf::RenderWindow* window)
 
 void GraphicsManagers::SetBackground(std::string address)
 {
-    sf::Texture texture = *new sf::Texture;
-    texture.loadFromFile("textures/" + address);
-    this->background.setTexture(texture);
+    this->backgroundImage.loadFromFile("textures/" + address);
+    this->backgroundTexture.loadFromImage(this->backgroundImage);
+    this->background.setTexture(this->backgroundTexture);
     this->background.setPosition(0, 0);
+    this->background.setTextureRect(sf::Rect<int>(0, 0, this->backgroundImage.getSize().x, this->backgroundImage.getSize().y));
     this->background.setScale(app->GetWindow()->getSize().x / this->background.getLocalBounds().width, app->GetWindow()->getSize().y / this->background.getLocalBounds().height);
 }
 

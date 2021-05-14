@@ -4,7 +4,7 @@
 / bullet name sprite_address left_edge_pos_x left_egde_pos_y speed_x speed_y length width gravity
 / unit name sprite_address centre_pos_x centre_pos_y speed_x speed_y length width mass gravity collison_type
 / background sprite_address
-background fast_enemy.png
+background background.png
 ball main_ball yellow_ball.png 640 360 0 0 20 1 0 1 10
 ball ball1 red_ball.png 100 100 0 0 10 1 0 1 10
 ball ball2 red_ball.png 1500 100 0 0 10 1 0 1 10

@@ -12,6 +12,8 @@ private:
 
     std::list<Renderer*> Renderers;
     Applications* app;
+    sf::Image backgroundImage;
+    sf::Texture backgroundTexture;
     sf::Sprite background;
 
 public:

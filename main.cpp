@@ -47,8 +47,6 @@ int main()
     //for (int i = 0; i < 232; i++)
       //  std::cout << "ball" + std::to_string(i + 1) + " ball red_ball.png " + std::to_string(100 + 50 * (i % 29)) + " " + std::to_string(100 * (1 + i / 29)) + " 0 0 10 1 0 1 10" << std::endl;
 
-    App.GetStorage()->GetObject("main_ball")->GetComponent<Renderer>()->sprite.setTexture(*App.GetGraphicsManager()->GetBackground().getTexture());
-
     App.Run();
 
     return 0;
