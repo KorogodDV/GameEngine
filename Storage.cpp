@@ -166,6 +166,7 @@ void Storages::UploadScene(std::string address)
 {
 	while (GameObjects.size() != 0)
 		this->DeleteObject(GameObjects.front().name);
+	this->application->GetGraphicsManager()->SetBackground("white_list.png");
 
 	std::string scene = uploadBufferFromFile(("scenes/" + address).c_str());
 
