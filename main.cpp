@@ -116,7 +116,7 @@ int main()
 {
     Applications App(1600, 900);
 
-    App.GetStorage()->UploadScene("Aliens main scene.txt");
+    App.GetStorage()->UploadScene("endgame.txt");
 
     App.GetStorage()->GetObject("player")->AddComponent<Controller>();
         
