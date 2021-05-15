@@ -38,6 +38,8 @@ public:
 
 	float GetLastFrameDurationAsSeconds();
 
+	float GetWorkTimeAsSeconds();
+
 	std::list<std::string>* GetObjectsForRemove();
 
 };

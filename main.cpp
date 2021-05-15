@@ -31,6 +31,24 @@ public:
     }
 };
 
+//class EnemySpawner : public Script {
+//
+//public: 
+//    void update()
+//    {
+//        if (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) % 3 != (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) - int(this->gameObject->GetApplication()->GetLastFrameDurationAsSeconds())) % 3)
+//        {
+//            switch(rand() % 3)
+//            {
+//                case 0:
+//                    for (int i = 0; i < 6; i++)
+//
+//            }
+//        }
+//    }
+//};
+
+
 int main()
 {
     Applications App(1600, 900);

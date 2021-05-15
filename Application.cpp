@@ -78,6 +78,11 @@ float Applications::GetLastFrameDurationAsSeconds()
     return LastFrameDuration;
 }
 
+float Applications::GetWorkTimeAsSeconds()
+{
+    return WorkTime.getElapsedTime().asSeconds();
+}
+
 std::list<std::string>* Applications::GetObjectsForRemove()
 {
     return &this->ObjectsForRemove;
