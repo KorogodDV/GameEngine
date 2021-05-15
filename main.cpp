@@ -8,6 +8,7 @@
 #include "Application.h"
 #include "uploadingStringFromTxt.h"
 #include "VectorMath.h"
+#include <random>
 
 class Controller : public Script {
 
@@ -79,7 +80,8 @@ public:
         {
             float width;
             float length;
-            switch(rand() % 5)
+            std::random_device rd;
+            switch(rd() % 5)
             {
             case 0: case 1:
                     width = 50;
