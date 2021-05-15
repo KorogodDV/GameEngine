@@ -18,11 +18,11 @@ public:
 
 	void CreateObject(std::string name);
 
-	void CreateBall(std::vector<std::string> param);
+	void CreateBall(std::string params);
 
-	void CreateBullet(std::vector<std::string> param);
+	void CreateBullet(std::string params);
 
-	void CreateUnit(std::vector<std::string> param);
+	void CreateUnit(std::string params);
 
 	void UploadScene(std::string address);
 

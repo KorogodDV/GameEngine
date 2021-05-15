@@ -42,6 +42,9 @@ public:
 //            {
 //                case 0:
 //                    for (int i = 0; i < 6; i++)
+//                    {
+//                        this->gameObject->GetApplication()->GetStorage()->CreateUnit()
+//                    }
 //
 //            }
 //        }

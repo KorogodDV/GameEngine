@@ -28,8 +28,11 @@ void Storages::CreateObject(std::string name)
 	GameObjects.push_back(*(new GameObject(name, application)));
 }
 
-void Storages::CreateBall(std::vector<std::string> param)
+void Storages::CreateBall(std::string params)
 {
+	std::vector<std::string> param;
+	split(params, param, ' ');
+
 	GameObject* obj = new GameObject(param[1], application, param[0]);
 
 	obj->AddComponent<Move>();
@@ -68,8 +71,11 @@ void Storages::CreateBall(std::vector<std::string> param)
 	GameObjects.push_back(*obj);
 }
 
-void Storages::CreateBullet(std::vector<std::string> param)
+void Storages::CreateBullet(std::string params)
 {
+	std::vector<std::string> param;
+	split(params, param, ' ');
+
 	GameObject* obj = new GameObject(param[1], application, param[0]);
 
 	obj->AddComponent<Move>();
@@ -114,8 +120,11 @@ void Storages::CreateBullet(std::vector<std::string> param)
 	GameObjects.push_back(*obj);
 }
 
-void Storages::CreateUnit(std::vector<std::string> param)
+void Storages::CreateUnit(std::string params)
 {
+	std::vector<std::string> param;
+	split(params, param, ' ');
+
 	GameObject* obj = new GameObject(param[1], application, param[0]);
 
 	obj->AddComponent<Move>();
@@ -170,11 +179,11 @@ void Storages::UploadScene(std::string address)
 	{
 		split(objects[i], objparams[i], ' ');
 		if (objparams[i][0] == "ball")
-			this->CreateBall(objparams[i]);
+			this->CreateBall(objects[i]);
 		else if (objparams[i][0] == "bullet")
-			this->CreateBullet(objparams[i]);
+			this->CreateBullet(objects[i]);
 		else if (objparams[i][0] == "player" || objparams[i][0] == "fast_enemy" || objparams[i][0] == "slow_enemy" || objparams[i][0] == "shooting_enemy")
-			this->CreateUnit(objparams[i]);
+			this->CreateUnit(objects[i]);
 		else if (objparams[i][0] == "background")
 			this->application->GetGraphicsManager()->SetBackground(objparams[i][1]);
 		//this->CreateBasicObject(objects[i]);
