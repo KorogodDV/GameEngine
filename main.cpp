@@ -52,6 +52,37 @@ public:
     }
 };
 
+/*class Bullet : public Script {
+
+public:
+
+    void onCollide()
+    {
+        (gameObject->GetApplication()->GetObjectsForRemove())->push_back(gameObject->name);
+    }
+};
+
+class Player : public Script {
+
+public:
+
+    void onCollide()
+    {
+        if gameObject->Get
+        //App.GetStorage()->UploadScene("Aliens main scene.txt");
+    }
+};
+
+class Enemy : public Script {
+
+public:
+
+    void onCollide()
+    {
+        App.GetStorage()->UploadScene("Aliens main scene.txt");
+    }
+};*/
+
 class ReturnToField : public Script {
 
 public:
