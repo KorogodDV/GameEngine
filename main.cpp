@@ -8,16 +8,37 @@
 #include "Application.h"
 #include "uploadingStringFromTxt.h"
 #include "VectorMath.h"
+#include <random>
 
 class Controller : public Script {
 
 public:
     void execute()
     {
-        if (0 < sf::Mouse::getPosition(*gameObject->GetApplication()->GetWindow()).x < gameObject->GetApplication()->GetWindow()->getSize().x or 0 < sf::Mouse::getPosition(*gameObject->GetApplication()->GetWindow()).y < gameObject->GetApplication()->GetWindow()->getSize().y)
-            gameObject->GetComponent<Physics>()->acceleration = normalize(sf::Vector2f(sf::Mouse::getPosition(*gameObject->GetApplication()->GetWindow())) - gameObject->GetComponent<Physics>()->pos) * 400.f ;
-        else
-            gameObject->GetComponent<Physics>()->acceleration = sf::Vector2f(0, 0);
+        sf::Vector2f dir;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+        {
+            dir += sf::Vector2f(0, -1);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        {
+            dir += sf::Vector2f(-1, 0);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        {
+            dir += sf::Vector2f(0, 1);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        {
+            dir += sf::Vector2f(1, 0);
+        }
+        float speed = 10;
+        gameObject->GetComponent<Physics>()->pos += speed * dir;
+        (gameObject->GetComponent<Renderer>()->sprite).move(speed * dir);
+        for (int i = 0; i < gameObject->GetComponent<Collider>()->hitboxes.begin()->getPointCount(); i++)
+        {
+            gameObject->GetComponent<Collider>()->hitboxes.begin()->setPoint(i, gameObject->GetComponent<Collider>()->hitboxes.begin()->getPoint(i) + speed * dir);
+        }
     }
 };
 
@@ -90,7 +111,8 @@ public:
         {
             float width;
             float length;
-            switch(rand() % 5)
+            std::random_device rd;
+            switch(rd() % 5)
             {
             case 0: case 1:
                     width = 50;
@@ -150,6 +172,7 @@ int main()
     App.GetStorage()->UploadScene("Aliens main scene.txt");
 
     App.GetStorage()->GetObject("player")->AddComponent<Controller>();
+    App.GetStorage()->GetObject("player")->RemoveComponent<Move>();
         
     App.GetStorage()->CreateObject("EnemySpawner");
     App.GetStorage()->GetObject("EnemySpawner")->AddComponent<EnemySpawner>();
