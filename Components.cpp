@@ -10,7 +10,7 @@
 void Move::execute()
 {
     gameObject->GetComponent<Physics>()->speed += gameObject->GetComponent<Physics>()->acceleration * gameObject->GetApplication()->GetLastFrameDurationAsSeconds();
-   if (len(gameObject->GetComponent<Physics>()->speed) < 40000)
+   if (len(gameObject->GetComponent<Physics>()->speed) > 40000)
         gameObject->GetComponent<Physics>()->speed = normalize(gameObject->GetComponent<Physics>()->speed) * 200.f;
     gameObject->GetComponent<Physics>()->pos += gameObject->GetComponent<Physics>()->speed * gameObject->GetApplication()->GetLastFrameDurationAsSeconds();
     (gameObject->GetComponent<Renderer>()->sprite).move(gameObject->GetApplication()->GetLastFrameDurationAsSeconds() * gameObject->GetComponent<Physics>()->speed);

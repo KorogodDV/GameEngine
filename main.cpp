@@ -57,7 +57,6 @@ public:
     {
         if (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3 != (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() + this->gameObject->GetApplication()->GetLastFrameDurationAsSeconds())) / 3)
         {
-            std::cout << this->gameObject->GetApplication()->GetWorkTimeAsSeconds() << std::endl;
             float width;
             float length;
             switch(rand() % 5)
@@ -71,7 +70,7 @@ public:
                             std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1) + 
                             " fast_enemy.png " + std::to_string(this->gameObject->GetApplication()->GetWindow()->getSize().x + (length + 1)* i) + " "  + 
                             std::to_string(rand() % int(this->gameObject->GetApplication()->GetWindow()->getSize().y - 2 * width) + width) + " " + 
-                            std::to_string(-10 * (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 9 + 1)) +
+                            std::to_string(-150 * (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 9 + 1)) +
                             " 0 " + std::to_string(length) + " " + std::to_string(width) + " 1 0 1");
                         this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("fast_enemy") +
                             std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<ReturnToField>();
@@ -86,7 +85,7 @@ public:
                             std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1) +
                             " slow_enemy.png " + std::to_string(this->gameObject->GetApplication()->GetWindow()->getSize().x + (length + 1) * i) + " " +
                             std::to_string(rand() % int(this->gameObject->GetApplication()->GetWindow()->getSize().y - 2 * width) + width) + " " +
-                            std::to_string(-8 * (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 9 + 1)) +
+                            std::to_string(-100 * (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 9 + 1)) +
                             " 0 " + std::to_string(length) + " " + std::to_string(width) + " 1 0 1");
                         this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("slow_enemy") +
                             std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<ReturnToField>();
@@ -101,7 +100,7 @@ public:
                             std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1) +
                             " shooting_enemy.png " + std::to_string(this->gameObject->GetApplication()->GetWindow()->getSize().x + (length + 1) * i) + " " +
                             std::to_string(rand() % int(this->gameObject->GetApplication()->GetWindow()->getSize().y - 2 * width) + width) + " " +
-                            std::to_string(-5 * (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 9 + 1)) +
+                            std::to_string(-50 * (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 9 + 1)) +
                             " 0 " + std::to_string(length) + " " + std::to_string(width) + " 1 0 1");
                         this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("shooting_enemy") +
                             std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<ReturnToField>();
@@ -120,7 +119,7 @@ int main()
     App.GetStorage()->UploadScene("Aliens main scene.txt");
 
     App.GetStorage()->GetObject("player")->AddComponent<Controller>();
-
+        
     App.GetStorage()->CreateObject("EnemySpawner");
     App.GetStorage()->GetObject("EnemySpawner")->AddComponent<EnemySpawner>();
    
