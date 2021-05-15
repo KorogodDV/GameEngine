@@ -22,7 +22,7 @@ public:
 
 	void CreateBullet(std::vector<std::string> param);
 
-	void CreatePlayer(std::vector<std::string> param);
+	void CreateUnit(std::vector<std::string> param);
 
 	void UploadScene(std::string address);
 

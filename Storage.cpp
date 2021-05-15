@@ -114,7 +114,7 @@ void Storages::CreateBullet(std::vector<std::string> param)
 	GameObjects.push_back(*obj);
 }
 
-void Storages::CreatePlayer(std::vector<std::string> param)
+void Storages::CreateUnit(std::vector<std::string> param)
 {
 	GameObject* obj = new GameObject(param[1], application, param[0]);
 
@@ -174,7 +174,7 @@ void Storages::UploadScene(std::string address)
 		else if (objparams[i][0] == "bullet")
 			this->CreateBullet(objparams[i]);
 		else if (objparams[i][0] == "player" || objparams[i][0] == "fast_enemy" || objparams[i][0] == "slow_enemy" || objparams[i][0] == "shooting_enemy")
-			this->CreatePlayer(objparams[i]);
+			this->CreateUnit(objparams[i]);
 		else if (objparams[i][0] == "background")
 			this->application->GetGraphicsManager()->SetBackground(objparams[i][1]);
 		//this->CreateBasicObject(objects[i]);
