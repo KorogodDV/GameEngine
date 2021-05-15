@@ -16,6 +16,7 @@ Applications::Applications(int window_length, int window_width, std::string back
         GraphicsManager = new GraphicsManagers(this, background_address);
         window->setFramerateLimit(60);
         WorkTime = *new sf::Clock;
+        WorkTimeBeforeThisFrame = 0;
         LastFrameDuration = 0;
         ObjectsForRemove = *new std::list<std::string>;
     }
@@ -37,7 +38,8 @@ void Applications::Run()
             GraphicsManager->draw(window);
             PhysicsManager->update();
             ScriptManager->update();
-            LastFrameDuration = WorkTime.restart().asSeconds();
+            LastFrameDuration = WorkTime.getElapsedTime().asSeconds() - WorkTimeBeforeThisFrame;
+            WorkTimeBeforeThisFrame += LastFrameDuration;
             for (std::string gameObject_name : ObjectsForRemove)
             {
                 Storage->DeleteObject(gameObject_name);

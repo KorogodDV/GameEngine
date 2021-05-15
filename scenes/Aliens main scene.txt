@@ -1,0 +1,8 @@
+/ templates
+/ typename name
+/ ball name sprite_address centre_pos_x centre_pos_y speed_x speed_y radius mass gravity collison_type amount_of_vertexes_in_hitbox
+/ bullet name sprite_address left_edge_pos_x left_egde_pos_y speed_x speed_y length width gravity
+/ unit name sprite_address centre_pos_x centre_pos_y speed_x speed_y length width mass gravity collison_type
+/ background sprite_address
+background background.png
+player player player.png 200 450 0 0 100 50 1 0 1

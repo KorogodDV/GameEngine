@@ -35,18 +35,9 @@ int main()
 {
     Applications App(1600, 900);
 
-    //App.GetStorage()->UploadScene("main scene.txt");
-    App.GetStorage()->UploadScene("Catching Balls normal main scene.txt");
-    //App.GetStorage()->UploadScene("Catching Balls big main scene.txt");
-
-
-    App.GetStorage()->GetObject("main_ball")->AddComponent<Controller>();
-    for (int i = 0; i < 16; i++)
-        App.GetStorage()->GetObject("ball" + std::to_string(i + 1))->AddComponent<RemoveBall>();
-
-    //for (int i = 0; i < 232; i++)
-      //  std::cout << "ball" + std::to_string(i + 1) + " ball red_ball.png " + std::to_string(100 + 50 * (i % 29)) + " " + std::to_string(100 * (1 + i / 29)) + " 0 0 10 1 0 1 10" << std::endl;
-
+    App.GetStorage()->UploadScene("Aliens main scene.txt");
+    App.GetStorage()->GetObject("player")->AddComponent<Controller>();
+   
     App.Run();
 
     return 0;

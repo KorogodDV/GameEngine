@@ -16,6 +16,7 @@ class Applications {
 	GraphicsManagers* GraphicsManager;
 	sf::RenderWindow* window;
 	sf::Clock WorkTime;
+	float WorkTimeBeforeThisFrame;
 	float LastFrameDuration;
 	std::list<std::string> ObjectsForRemove;
 
