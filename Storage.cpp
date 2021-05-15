@@ -196,7 +196,7 @@ GameObject* Storages::GetObject(std::string name)
 	auto searchRes = std::find_if(GameObjects.begin(), GameObjects.end(), [name](GameObject gameobj) { return  gameobj.name == name; });
 	if (searchRes != GameObjects.end())
 		return &(*searchRes);
-	assert(0);
+	assert(0 && "There is no object with this name in the storage");
 }
 
 
