@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include <SFML/Graphics.hpp>
 #include <list>
+#include <set>
 
 class Storages;
 
@@ -18,7 +19,7 @@ class Applications {
 	sf::Clock WorkTime;
 	float WorkTimeBeforeThisFrame;
 	float LastFrameDuration;
-	std::list<std::string> ObjectsForRemove;
+	std::set<std::string> ObjectsForRemove;
 
 public:
 
@@ -40,6 +41,6 @@ public:
 
 	float GetWorkTimeAsSeconds();
 
-	std::list<std::string>* GetObjectsForRemove();
+	std::set<std::string>* GetObjectsForRemove();
 
 };

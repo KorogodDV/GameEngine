@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include <SFML/Graphics.hpp>
 #include "Application.h"
+#include <set>
 
 Applications::Applications(int window_length, int window_width, std::string background_address)
     {
@@ -18,7 +19,7 @@ Applications::Applications(int window_length, int window_width, std::string back
         WorkTime = *new sf::Clock;
         WorkTimeBeforeThisFrame = -1;
         LastFrameDuration = 0;
-        ObjectsForRemove = *new std::list<std::string>;
+        ObjectsForRemove = *new std::set<std::string>;
     }
 
 void Applications::Run()
@@ -86,7 +87,7 @@ float Applications::GetWorkTimeAsSeconds()
     return WorkTimeBeforeThisFrame + LastFrameDuration;
 }
 
-std::list<std::string>* Applications::GetObjectsForRemove()
+std::set<std::string>* Applications::GetObjectsForRemove()
 {
     return &this->ObjectsForRemove;
 }
