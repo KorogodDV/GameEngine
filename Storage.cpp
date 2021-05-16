@@ -89,26 +89,27 @@ void Storages::CreateBullet(std::string params)
 
 	obj->AddComponent<Collider>();
 	Collider* coll = obj->GetComponent<Collider>();
-	sf::ConvexShape* newHitBox = new sf::ConvexShape(10);
+	int amount_of_vertexes_in_hitbox = 6;
+	sf::ConvexShape* newHitBox = new sf::ConvexShape(amount_of_vertexes_in_hitbox);
 	newHitBox->setFillColor(sf::Color(0));
 	newHitBox->setOutlineColor(sf::Color::Blue);
 	newHitBox->setOutlineThickness(1);
 	float bulletLength = std::stof(param[7]);
 	float bulletWidth = std::stof(param[8]);
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < amount_of_vertexes_in_hitbox; i++)
 	{
-		if (i < 5)
+		if (i < amount_of_vertexes_in_hitbox / 2)
 			newHitBox->setPoint(i, (sf::Vector2f(std::stof(param[3]) + bulletLength - bulletWidth / 2, std::stof(param[4]) + bulletWidth / 2) + (sf::Vector2f(0, -1 * bulletWidth / 2) -
-				sf::Vector2f(-1 * bulletWidth / 2 * sin(2 * PI / 10 * (i + 0.5)), -1 * bulletWidth / 2 * (1 - cos(2 * PI / 10 * (i + 0.5)))))));
+				sf::Vector2f(-1 * bulletWidth / 2 * sin(2 * PI / amount_of_vertexes_in_hitbox * (i + 0.5)), -1 * bulletWidth / 2 * (1 - cos(2 * PI / amount_of_vertexes_in_hitbox * (i + 0.5)))))));
 		else
 			newHitBox->setPoint(i, (sf::Vector2f(std::stof(param[3]) + bulletWidth / 2, std::stof(param[4]) + bulletWidth / 2) + (sf::Vector2f(0, -1 * bulletWidth / 2) -
-				sf::Vector2f(-1 * bulletWidth / 2 * sin(2 * PI / 10 * (i + 0.5)), -1 * bulletWidth / 2 * (1 - cos(2 * PI / 10 * (i + 0.5)))))));
+				sf::Vector2f(-1 * bulletWidth / 2 * sin(2 * PI / amount_of_vertexes_in_hitbox * (i + 0.5)), -1 * bulletWidth / 2 * (1 - cos(2 * PI / amount_of_vertexes_in_hitbox * (i + 0.5)))))));
 	}
 	coll->hitboxes.push_back(*newHitBox);
 
 	obj->AddComponent<Renderer>();
 	Renderer* rend = obj->GetComponent<Renderer>();
-	//rend->showHitboxesBoundary = 1;
+	rend->showHitboxesBoundary = 1;
 	//rend->showSprite = 0;
 	rend->image.loadFromFile("textures/" + param[2]);
 	rend->image.createMaskFromColor(sf::Color::White);
@@ -164,8 +165,8 @@ void Storages::CreateUnit(std::string params)
 
 void Storages::UploadScene(std::string address)
 {
-	while (GameObjects.size() != 0)
-		this->DeleteObject(GameObjects.front().name);
+	for (GameObject obj : GameObjects)
+		this->application->GetObjectsForRemove()->insert(obj.name);
 	this->application->GetGraphicsManager()->SetBackground("white_list.png");
 
 	std::string scene = uploadBufferFromFile(("scenes/" + address).c_str());
@@ -212,4 +213,9 @@ void Storages::DeleteObject(std::string name)
 	application->GetPhysicsManager()->RemovePhysics(obj);
 	application->GetScriptManager()->RemoveScript(obj);
 	GameObjects.remove(*obj);
+}
+
+int Storages::GetSize()
+{
+	return GameObjects.size();
 }

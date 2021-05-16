@@ -246,6 +246,41 @@ public:
     }
 };
 
+class RemoveBullet : public Script {
+
+public:
+    void execute()
+    {
+        if (this->gameObject->GetComponent<Collider>()->hitboxes.front().getPoint(1).x > this->gameObject->GetApplication()->GetWindow()->getSize().x)
+        {
+            (this->gameObject->GetApplication()->GetObjectsForRemove())->insert(this->gameObject->name);
+        }
+    }
+};
+
+class BulletSpawner : public Script {
+
+public:
+    void execute()
+    {
+        int bulletpersecond = 5;
+        if (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * bulletpersecond) != int((this->gameObject->GetApplication()->GetWorkTimeAsSeconds() - this->gameObject->GetApplication()->GetLastFrameDurationAsSeconds()) * bulletpersecond))
+        {
+            float width = 10;
+            float length = 20;
+            this->gameObject->GetApplication()->GetStorage()->CreateBullet("bullet " + std::string("bullet") +
+                std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds())) +
+                " bullet.png " + std::to_string(this->gameObject->GetApplication()->GetStorage()->GetObject("player")->GetComponent<Physics>()->pos.x) + " " +
+                std::to_string(this->gameObject->GetApplication()->GetStorage()->GetObject("player")->GetComponent<Physics>()->pos.y) + " " +
+                "200" +" 0 " + std::to_string(length) + " " + std::to_string(width) + " 0");
+            this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("bullet") +
+                std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds())))->AddComponent<Bullet>();
+            this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("bullet") +
+                std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds())))->AddComponent<RemoveBullet>();
+        }
+    }
+};
+
 int main()
 {
     Applications App(1600, 900);
