@@ -23,7 +23,7 @@ public:
 
     void RemoveScript(GameObject* obj);
 
-    void ObjectOnCollide(GameObject* obj);
+    void ObjectOnCollide(GameObject* obj1, GameObject* obj2);
 
     void update();
 

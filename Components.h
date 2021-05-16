@@ -33,7 +33,7 @@ class Script : public Component {
 public:
 
     virtual void execute() {};
-    virtual void onCollide() {};
+    virtual void onCollide(GameObject* obj) {};
 
 };
 

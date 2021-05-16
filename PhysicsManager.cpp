@@ -52,7 +52,8 @@ void PhysicsManagers::update()
                     if (checkCollision((*(*iter)->gameObject->GetComponent<Collider>()->hitboxes.begin()), (*(*iter1)->gameObject->GetComponent<Collider>()->hitboxes.begin())))
                     {
                         collide_iter = true;
-                        app->GetScriptManager()->ObjectOnCollide((*iter1)->gameObject);
+                        app->GetScriptManager()->ObjectOnCollide((*iter1)->gameObject, (*iter)->gameObject);
+                        app->GetScriptManager()->ObjectOnCollide((*iter)->gameObject, (*iter1)->gameObject);
                         //collide(&(*(*iter)->gameObject->GetComponent<Collider>()->hitboxes.begin()), &(*(*iter1)->gameObject->GetComponent<Collider>()->hitboxes.begin()), (*iter)->speed, (*iter1)->speed, 0.1);
                     }
                 }
@@ -66,10 +67,10 @@ void PhysicsManagers::update()
             }
         }
 
-        if (collide_iter)
+        /*if (collide_iter)
         {
             app->GetScriptManager()->ObjectOnCollide((*iter)->gameObject);
-        }
+        }*/
 
         if (PhysicsComps_len > PhysicsComps.size())
         {

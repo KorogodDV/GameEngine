@@ -31,13 +31,13 @@ void ScriptManagers::RemoveScript(GameObject* obj)
     scripts.remove_if([obj](Script* script) { return  script->gameObject->name == obj->name; });
 }
 
-void ScriptManagers::ObjectOnCollide(GameObject* obj)
+void ScriptManagers::ObjectOnCollide(GameObject* obj1, GameObject* obj2)
 {
     for (Script* script : scripts)
     {
-        if (script->gameObject->name == obj->name)
+        if (script->gameObject->name == obj1->name)
         {
-            script->onCollide();
+            script->onCollide(obj2);
         }
     }
 }
