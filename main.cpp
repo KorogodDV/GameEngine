@@ -213,7 +213,7 @@ public:
     void execute()
     {
         int bulletpersecond = 5;
-        if (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * bulletpersecond) != (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() - this->gameObject->GetApplication()->GetLastFrameDurationAsSeconds() * bulletpersecond)))
+        if (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * bulletpersecond) != int((this->gameObject->GetApplication()->GetWorkTimeAsSeconds() - this->gameObject->GetApplication()->GetLastFrameDurationAsSeconds()) * bulletpersecond))
         {
             float width = 10;
             float length = 20;
@@ -243,8 +243,8 @@ int main()
     App.GetStorage()->CreateObject("EnemySpawner");
     App.GetStorage()->GetObject("EnemySpawner")->AddComponent<EnemySpawner>();
 
-    //App.GetStorage()->CreateObject("BulletSpawner");
-    //App.GetStorage()->GetObject("BulletSpawner")->AddComponent<BulletSpawner>();
+    App.GetStorage()->CreateObject("BulletSpawner");
+    App.GetStorage()->GetObject("BulletSpawner")->AddComponent<BulletSpawner>();
    
     App.Run();
 

@@ -29,4 +29,6 @@ public:
 	GameObject* GetObject(std::string name);
 
 	void DeleteObject(std::string name);
+
+	int GetSize();
 };

@@ -214,3 +214,8 @@ void Storages::DeleteObject(std::string name)
 	application->GetScriptManager()->RemoveScript(obj);
 	GameObjects.remove(*obj);
 }
+
+int Storages::GetSize()
+{
+	return GameObjects.size();
+}
