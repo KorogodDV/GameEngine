@@ -80,7 +80,7 @@ public:
         {
             collideWithWall(this->gameObject);
         }
-        if ((obj->type == "fast_enemy") or (obj->type == "slow_enemy") or (obj->type == "shooting_enemy"))
+        if ((obj->type == "fast_enemy") or (obj->type == "slow_enemy") or (obj->type == "shooting_enemy") )
         {
             this->gameObject->GetApplication()->GetStorage()->UploadScene("endgame.txt");
             std::cout << 0;
@@ -126,6 +126,55 @@ public:
     }
 };
 
+class RemoveBullet : public Script {
+
+public:
+    void execute()
+    {
+        if (this->gameObject->GetComponent<Collider>()->hitboxes.front().getPoint(1).x > this->gameObject->GetApplication()->GetWindow()->getSize().x)
+        {
+            (this->gameObject->GetApplication()->GetObjectsForRemove())->insert(this->gameObject->name);
+        }
+    }
+};
+
+class BulletSpawner : public Script {
+
+public:
+    void execute()
+    {
+        int bulletpersecond = 5;
+        if (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * bulletpersecond) != (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() - this->gameObject->GetApplication()->GetLastFrameDurationAsSeconds() * bulletpersecond)))
+        {
+            float width = 10;
+            float length = 20;
+            if (this->gameObject->name == "player")
+            {
+                this->gameObject->GetApplication()->GetStorage()->CreateBullet("bullet " + std::string("bullet1_") +
+                    std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * bulletpersecond)) +
+                    " bullet.png " + std::to_string(this->gameObject->GetComponent<Physics>()->pos.x + 11) + " " +
+                    std::to_string(this->gameObject->GetComponent<Physics>()->pos.y) + " " +
+                    std::to_string(602) + " 0 " + std::to_string(length) + " " + std::to_string(width) + " 0");
+                this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("bullet1_") +
+                    std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * bulletpersecond)))->AddComponent<Bullet>();
+                this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("bullet1_") +
+                    std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * bulletpersecond)))->AddComponent<RemoveBullet>();
+            }
+            else
+            {
+                this->gameObject->GetApplication()->GetStorage()->CreateBullet("bullet " + std::string("bullet2_") +
+                    std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * bulletpersecond)) +
+                    " bullet.png " + std::to_string(this->gameObject->GetComponent<Physics>()->pos.x - 11) + " " +
+                    std::to_string(this->gameObject->GetComponent<Physics>()->pos.y) + " " +
+                    std::to_string(-602) + " 0 " + std::to_string(length) + " " + std::to_string(width) + " 0");
+                this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("bullet2_") +
+                    std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * bulletpersecond)))->AddComponent<Bullet>();
+                this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("bullet2_") +
+                    std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * bulletpersecond)))->AddComponent<RemoveBullet>();
+            }
+        }
+    }
+};
 
 class EnemySpawner : public Script {
 
@@ -188,44 +237,11 @@ public:
                             std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<ReturnToField>();
                         this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("shooting_enemy") +
                             std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<Enemy>();
+                        this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("shooting_enemy") +
+                            std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<BulletSpawner>();
                     }
                     break;
             }
-        }
-    }
-};
-
-class RemoveBullet : public Script {
-
-public:
-    void execute()
-    {
-        if (this->gameObject->GetComponent<Collider>()->hitboxes.front().getPoint(1).x > this->gameObject->GetApplication()->GetWindow()->getSize().x)
-        {
-            (this->gameObject->GetApplication()->GetObjectsForRemove())->insert(this->gameObject->name);
-        }
-    }
-};
-
-class BulletSpawner : public Script {
-
-public:
-    void execute()
-    {
-        int bulletpersecond = 5;
-        if (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * bulletpersecond) != (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() - this->gameObject->GetApplication()->GetLastFrameDurationAsSeconds() * bulletpersecond)))
-        {
-            float width = 10;
-            float length = 20;
-            this->gameObject->GetApplication()->GetStorage()->CreateBullet("bullet " + std::string("bullet") +
-                std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds())) +
-                " bullet.png " + std::to_string(this->gameObject->GetApplication()->GetStorage()->GetObject("player")->GetComponent<Physics>()->pos.x) + " " +
-                std::to_string(this->gameObject->GetApplication()->GetStorage()->GetObject("player")->GetComponent<Physics>()->pos.y) + " " +
-                "200" +" 0 " + std::to_string(length) + " " + std::to_string(width) + " 0");
-            this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("bullet") +
-                std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds())))->AddComponent<Bullet>();
-            this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("bullet") +
-                std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds())))->AddComponent<RemoveBullet>();
         }
     }
 };
@@ -238,13 +254,11 @@ int main()
 
     App.GetStorage()->GetObject("player")->AddComponent<Controller>();
     App.GetStorage()->GetObject("player")->AddComponent<Player>();
+    App.GetStorage()->GetObject("player")->AddComponent<BulletSpawner>();
     App.GetStorage()->GetObject("player")->RemoveComponent<Move>();
-        
+    
     App.GetStorage()->CreateObject("EnemySpawner");
     App.GetStorage()->GetObject("EnemySpawner")->AddComponent<EnemySpawner>();
-
-    App.GetStorage()->CreateObject("BulletSpawner");
-    App.GetStorage()->GetObject("BulletSpawner")->AddComponent<BulletSpawner>();
    
     App.Run();
 
