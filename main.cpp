@@ -156,7 +156,7 @@ class EnemySpawner : public Script {
 public: 
     void execute()
     {
-        if (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3 != (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() + this->gameObject->GetApplication()->GetLastFrameDurationAsSeconds())) / 3)
+        if (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3 != (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() - this->gameObject->GetApplication()->GetLastFrameDurationAsSeconds())) / 3)
         {
             float width;
             float length;
