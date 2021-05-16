@@ -144,7 +144,12 @@ class BulletSpawner : public Script {
 public:
     void execute()
     {
-        int bulletpersecond = 5;
+        int bulletpersecond;
+        if (this->gameObject->name == "player")
+
+            bulletpersecond = 10;
+        else
+            bulletpersecond = 2;
         if (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * bulletpersecond) != int((this->gameObject->GetApplication()->GetWorkTimeAsSeconds() - this->gameObject->GetApplication()->GetLastFrameDurationAsSeconds()) * bulletpersecond))
         {
             float width = 10;
@@ -167,7 +172,7 @@ public:
                     std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * 1000)) +
                     " bullet.png " + std::to_string(this->gameObject->GetComponent<Physics>()->pos.x - 50) + " " +
                     std::to_string(this->gameObject->GetComponent<Physics>()->pos.y) + " " +
-                    std::to_string(-100) + " 0 " + std::to_string(length) + " " + std::to_string(width) + " 0");
+                    std::to_string(-300) + " 0 " + std::to_string(length) + " " + std::to_string(width) + " 0");
                 this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("bullet2_") +
                     std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * 1000)))->AddComponent<Bullet>();
                 this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("bullet2_") +
