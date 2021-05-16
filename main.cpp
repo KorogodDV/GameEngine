@@ -243,8 +243,8 @@ int main()
     App.GetStorage()->CreateObject("EnemySpawner");
     App.GetStorage()->GetObject("EnemySpawner")->AddComponent<EnemySpawner>();
 
-    App.GetStorage()->CreateObject("BulletSpawner");
-    App.GetStorage()->GetObject("BulletSpawner")->AddComponent<BulletSpawner>();
+    //App.GetStorage()->CreateObject("BulletSpawner");
+    //App.GetStorage()->GetObject("BulletSpawner")->AddComponent<BulletSpawner>();
    
     App.Run();
 
