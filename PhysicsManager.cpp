@@ -4,7 +4,7 @@
 #include "Components.h"
 #include "PhysicsManager.h"
 #include "GameObject.h"
-#include "Check—ollision.h"
+#include "CheckCollision.h"
 #include <iostream>
 #include "Application.h"
 
