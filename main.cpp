@@ -57,53 +57,38 @@ public:
     }
 };
 
-class Bullet : public Script {
+class BulletAnnihilation : public Script {
 
 public:
 
     void onCollide(GameObject* obj)
     {
-        if ((obj->type != "player") and (obj->type != "bullet"))
-        {
-            (this->gameObject->GetApplication()->GetObjectsForRemove())->insert(this->gameObject->name);
-        }
+        if ((obj->type == "fast_enemy") or (obj->type == "slow_enemy") or (obj->type == "shooting_enemy"))
+            if (this->gameObject->GetComponent<Physics>()->speed.x > 0)
+                (this->gameObject->GetApplication()->GetObjectsForRemove())->insert(this->gameObject->name);
     }
 };
 
-class Player : public Script {
+class PlayerAnnihilation : public Script {
 
 public:
 
     void onCollide(GameObject* obj)
     {
-        if (obj->type == "wall")
-        {
-            collideWithWall(this->gameObject);
-        }
         if ((obj->type == "fast_enemy") or (obj->type == "slow_enemy") or (obj->type == "shooting_enemy") or (obj->type == "bullet"))
-        {
-            this->gameObject->GetApplication()->GetStorage()->UploadScene("endgame.txt");
-        }
-        
+            this->gameObject->GetApplication()->GetStorage()->UploadScene("endgame.txt");  
     }
 };
 
-class Enemy : public Script {
+class EnemyAnnihilation : public Script {
 
 public:
 
     void onCollide(GameObject* obj)
     {
         if (obj->type == "bullet")
-        {
-            (this->gameObject->GetApplication()->GetObjectsForRemove())->insert(this->gameObject->name);
-        }
-
-        if (obj->type == "wall")
-        {
-            collideWithWall(this->gameObject);
-        }
-
+            if (obj->GetComponent<Physics>()->speed.x > 0)
+                (this->gameObject->GetApplication()->GetObjectsForRemove())->insert(this->gameObject->name);
     }
 };
 
@@ -158,21 +143,21 @@ public:
                     std::to_string(this->gameObject->GetComponent<Physics>()->pos.y) + " " +
                     std::to_string(602) + " 0 " + std::to_string(length) + " " + std::to_string(width) + " 0");
                 this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("bullet1_") +
-                    std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * 1000)))->AddComponent<Bullet>();
+                    std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * 1000)))->AddComponent<BulletAnnihilation>();
                 this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("bullet1_") +
                     std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * 1000)))->AddComponent<RemoveBullet>();
             }
             else
             {
                 this->gameObject->GetApplication()->GetStorage()->CreateBullet("bullet " + std::string("bullet2_") +
-                    std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * 1000)) +
+                    std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * 1000)) + (this->gameObject->name) +
                     " bullet.png " + std::to_string(this->gameObject->GetComponent<Physics>()->pos.x - 50) + " " +
                     std::to_string(this->gameObject->GetComponent<Physics>()->pos.y) + " " +
                     std::to_string(-300 * (int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 18 + 1)) + " 0 " + std::to_string(length) + " " + std::to_string(width) + " 0");
                 this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("bullet2_") +
-                    std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * 1000)))->AddComponent<Bullet>();
+                    std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * 1000)) + (this->gameObject->name))->AddComponent<BulletAnnihilation>();
                 this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("bullet2_") +
-                    std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * 1000)))->AddComponent<RemoveBullet>();
+                    std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds() * 1000)) + (this->gameObject->name))->AddComponent<RemoveBullet>();
             }
         }
     }
@@ -204,7 +189,7 @@ public:
                         this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("fast_enemy") +
                             std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<ReturnToField>();
                         this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("fast_enemy") +
-                            std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<Enemy>();
+                            std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<EnemyAnnihilation>();
                     }
                     break;
             case 2: case 3:
@@ -221,7 +206,7 @@ public:
                         this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("slow_enemy") +
                             std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<ReturnToField>();
                         this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("slow_enemy") +
-                            std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<Enemy>();
+                            std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<EnemyAnnihilation>();
                     }
                     break;
                 case 4:
@@ -238,7 +223,7 @@ public:
                         this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("shooting_enemy") +
                             std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<ReturnToField>();
                         this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("shooting_enemy") +
-                            std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<Enemy>();
+                            std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<EnemyAnnihilation>();
                         this->gameObject->GetApplication()->GetStorage()->GetObject(std::string("shooting_enemy") +
                             std::to_string(int(this->gameObject->GetApplication()->GetWorkTimeAsSeconds()) / 3) + std::to_string(i + 1))->AddComponent<BulletSpawner>();
                     }
@@ -255,7 +240,7 @@ int main()
     App.GetStorage()->UploadScene("Aliens main scene.txt");
 
     App.GetStorage()->GetObject("player")->AddComponent<Controller>();
-    App.GetStorage()->GetObject("player")->AddComponent<Player>();
+    App.GetStorage()->GetObject("player")->AddComponent<PlayerAnnihilation>();
     App.GetStorage()->GetObject("player")->AddComponent<BulletSpawner>();
     App.GetStorage()->GetObject("player")->RemoveComponent<Move>();
     
