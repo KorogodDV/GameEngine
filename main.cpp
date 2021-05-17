@@ -12,7 +12,7 @@
 
 void collideWithWall(GameObject* obj)
 {
-    obj->GetComponent<Physics>()->speed.y = -obj->GetComponent<Physics>()->speed.y;
+    obj->GetComponent<Physics>()->speed.y = -obj->GetComponent<Physics>()->speed.y; Ñ
 }
 
 class Controller : public Script {
