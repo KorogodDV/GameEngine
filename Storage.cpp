@@ -109,7 +109,7 @@ void Storages::CreateBullet(std::string params)
 
 	obj->AddComponent<Renderer>();
 	Renderer* rend = obj->GetComponent<Renderer>();
-	rend->showHitboxesBoundary = 1;
+	//rend->showHitboxesBoundary = 1;
 	//rend->showSprite = 0;
 	rend->image.loadFromFile("textures/" + param[2]);
 	rend->image.createMaskFromColor(sf::Color::White);
@@ -151,7 +151,7 @@ void Storages::CreateUnit(std::string params)
 
 	obj->AddComponent<Renderer>();
 	Renderer* rend = obj->GetComponent<Renderer>();
-	rend->showHitboxesBoundary = 1;
+	//rend->showHitboxesBoundary = 1;
 	//rend->showSprite = 0;
 	rend->image.loadFromFile("textures/" + param[2]);
 	rend->image.createMaskFromColor(sf::Color::White);

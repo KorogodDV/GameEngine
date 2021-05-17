@@ -49,7 +49,6 @@ void Applications::Run()
                 Storage->DeleteObject(gameObject_name);
             }
             ObjectsForRemove.clear();
-            std::cout << Storage->GetSize() << "    " << this->GetWorkTimeAsSeconds() << std::endl;
         }
     }
 
