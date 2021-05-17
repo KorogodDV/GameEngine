@@ -163,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="CheckCollision.h" />
     <ClInclude Include="CheckСollision.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="GameObject.h" />
