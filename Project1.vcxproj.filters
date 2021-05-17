@@ -53,9 +53,6 @@
     <ClInclude Include="ScriptManager.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="CheckСollision.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="GraphicsManager.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
